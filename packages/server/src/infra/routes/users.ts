@@ -1,9 +1,16 @@
 import { Router } from 'express'
+import { UserCreator } from './controllers/UserCreator'
+import { UserCreatorValidate } from './controllers/UserCreatorValidate'
 
 const usersRouter = Router()
+const userCreator = new UserCreator()
+const userCreatorValidate = new UserCreatorValidate()
 
-usersRouter.get('/route', (req, res) => {
-  res.send('Users route')
-})
+usersRouter.post(
+  '/create',
+  userCreatorValidate.validateEmail,
+  userCreatorValidate.validatePassword,
+  userCreator.create
+)
 
 export { usersRouter }

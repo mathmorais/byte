@@ -1,6 +1,6 @@
 import { Schema, model, Document } from 'mongoose'
 
-interface IUserSchema {
+interface IUserSchema extends Document {
   name: string
   email: string
   password: string
@@ -10,10 +10,10 @@ interface IUserSchema {
 export const UserSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
-  password: { type: String, required: true },
+  password: { type: String, required: true, minLength: 8, maxLength: 200 },
   email_verified: { type: Boolean, default: false },
 })
 
-const UserModel = model<IUserSchema & Document>('User', UserSchema)
+const UserModel = model<IUserSchema>('User', UserSchema)
 
 export { UserModel }
