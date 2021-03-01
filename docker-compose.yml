@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  database:
+    container_name: techblog_databse
+    image: mongo:latest
+    ports:
+      - 27018:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./packages/docker/database:/data/db
+  client:
+    container_name: techblog_client
+    build: ./packages/client
+    command: yarn dev
+    depends_on:
+      - server
+    ports:
+      - 3000:3000
+    volumes:
+      - ./packages/client:/client
+      - /client/node_modules
+  server:
+    container_name: techblog_server
+    build: ./packages/server
+    command: yarn dev
+    depends_on:
+      - database
+    environment:
+      PORT: 5050
+      DB_CONNECTION: mongodb://root:root@database:27017/techblog?authSource=admin
+      DB_CONNECTION_TEST: mongodb://root:root@localhost:27018/techblog-test?authSource=admin
+    ports:
+      - 5050:5050
+    volumes:
+      - ./packages/server:/server
+      - /server/node_modules
