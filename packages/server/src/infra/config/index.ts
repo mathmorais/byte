@@ -12,20 +12,16 @@ const checkCurrentDatabaseEnvironment = () => {
   return isOnTestEnviroment ? DB_CONNECTION_TEST : DB_CONNECTION
 }
 
-const checkCurrentPortEnviroment = () => {
-  const { NODE_ENV, PORT } = process.env
-
-  const isOnTestEnviroment = NODE_ENV === 'test'
-
-  return isOnTestEnviroment ? 7070 : PORT
-}
-
 const config = {
   server: {
-    port: checkCurrentPortEnviroment(),
+    port: process.env.PORT,
   },
   database: {
     connection: checkCurrentDatabaseEnvironment(),
+  },
+  jsonwebtoken: {
+    privateKey: process.env.PRIVATE_KEY,
+    publicKey: process.env.PUBLIC_KEY,
   },
 }
 

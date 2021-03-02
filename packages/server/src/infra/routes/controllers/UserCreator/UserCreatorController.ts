@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { createUserUseCase } from '@app/useCases/User/CreateUser'
 import { IUserCreatorRequestDTO } from './UserCreatorRequestDTO'
 
-export class UserCreator {
+export class UserCreatorController {
   async create(req: Request, res: Response) {
     const { name, email, password }: IUserCreatorRequestDTO = req.body
 
