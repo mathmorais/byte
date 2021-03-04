@@ -1,4 +1,6 @@
 import dotenv from 'dotenv'
+import { SignOptions } from 'jsonwebtoken'
+import SMTPTransport from 'nodemailer/lib/smtp-transport'
 
 dotenv.config({
   path: './src/infra/.env',
@@ -12,6 +14,16 @@ const checkCurrentDatabaseEnvironment = () => {
   return isOnTestEnviroment ? DB_CONNECTION_TEST : DB_CONNECTION
 }
 
+interface IMailConfig {
+  smtp: {
+    port: number
+    secure: boolean
+    host: string
+  }
+  user: string
+  pass: string
+}
+
 const config = {
   server: {
     port: process.env.PORT,
@@ -22,7 +34,20 @@ const config = {
   jsonwebtoken: {
     privateKey: process.env.PRIVATE_KEY,
     publicKey: process.env.PUBLIC_KEY,
+    config: <SignOptions>{
+      algorithm: 'RS256',
+      expiresIn: '7d',
+    },
   },
+  mail: ({
+    smtp: {
+      host: process.env.MAIL_HOST!,
+      port: process.env.MAIL_PORT!,
+      secure: process.env.MAIL_SECURE!,
+    },
+    user: process.env.MAIL_USER!,
+    pass: process.env.MAIL_PASS!,
+  } as unknown) as IMailConfig,
 }
 
 export { config }

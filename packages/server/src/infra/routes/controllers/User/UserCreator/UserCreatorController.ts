@@ -1,9 +1,9 @@
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import { createUserUseCase } from '@app/useCases/User/CreateUser'
 import { IUserCreatorRequestDTO } from './UserCreatorRequestDTO'
 
 export class UserCreatorController {
-  async create(req: Request, res: Response) {
+  async create(req: Request, res: Response, next: NextFunction) {
     const { name, email, password }: IUserCreatorRequestDTO = req.body
 
     try {
@@ -13,11 +13,9 @@ export class UserCreatorController {
         password,
       })
 
-      res.status(201).json({
-        message: 'Created',
-      })
+      return next()
     } catch (err) {
-      res.status(500).json({
+      return res.status(500).json({
         message: err.message,
       })
     }

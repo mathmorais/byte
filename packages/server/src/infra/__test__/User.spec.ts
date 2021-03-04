@@ -71,3 +71,20 @@ describe('User authentication', () => {
     request(app).post('/api/users/auth').send({}).expect(401, done)
   })
 })
+
+describe('User email verify', () => {
+  beforeAll(async () => {
+    await mongoLoader()
+  })
+  afterAll(async done => {
+    await UserModel.deleteMany({})
+    await mongoose.connection.close()
+    done()
+  })
+
+  it('Should return 200 when email exist', async done => {
+    const userID = '604025a5d8ed0d02a84ff7ed'
+
+    request(app).get(`/api/users/verify/${userID}`).expect(200, done)
+  })
+})

@@ -6,6 +6,7 @@ export class User {
   email!: string
   password!: string
   email_verified?: boolean
+  admin?: boolean
 
   constructor(props: Omit<User, 'id'>, id?: string) {
     Object.assign(this, props)

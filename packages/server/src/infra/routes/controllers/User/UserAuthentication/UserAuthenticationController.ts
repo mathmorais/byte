@@ -3,12 +3,8 @@ import { findUserByEmailUseCase } from '@app/useCases/UserSeaching/FindUserByEma
 import { IUserAuthenticationRequestDTO } from './UserAuthenticationRequestDTO'
 import { compare } from 'bcryptjs'
 import { ObjectId } from 'mongoose'
-import jwt from 'jsonwebtoken'
-import { config } from '@infra/config'
 
-interface ITokenProps {
-  id: string | ObjectId
-}
+import { tokenSign } from '@infra/utils/tokenSign'
 
 export class UserAuthenticatioController {
   constructor() {
@@ -22,19 +18,6 @@ export class UserAuthenticatioController {
     return await compare(password, cryptedPassword)
   }
 
-  private async signLoginToken({ id }: ITokenProps) {
-    if (config.jsonwebtoken.privateKey) {
-      return jwt.sign(
-        {
-          id,
-        },
-        config.jsonwebtoken.privateKey!
-      )
-    }
-
-    throw new Error("Private key from jwt can't undefined")
-  }
-
   authenticate = async (req: Request, res: Response) => {
     const { email, password }: IUserAuthenticationRequestDTO = req.body
     const findedUser = await findUserByEmailUseCase.handle({ email })
@@ -44,13 +27,16 @@ export class UserAuthenticatioController {
       findedUser!.password
     )
 
-    if (result) {
+    if (result && findedUser) {
       return res.status(200).json({
-        message: this.signLoginToken({ id: findedUser!.id! }),
+        message: tokenSign({
+          id: findedUser.id!,
+          admin: findedUser.admin!,
+        }),
       })
     }
 
-    res.status(401).json({
+    return res.status(401).json({
       message: 'Email or password is incorrect',
     })
   }
