@@ -1,12 +1,11 @@
 import { Request, Response } from 'express'
-import { findUserByEmailUseCase } from '@app/useCases/UserSeaching/FindUserByEmail'
+import { findUserUseCase } from '@app/useCases/UserSeaching/FindUser'
 import { IUserAuthenticationRequestDTO } from './UserAuthenticationRequestDTO'
 import { compare } from 'bcryptjs'
-import { ObjectId } from 'mongoose'
 
 import { tokenSign } from '@infra/utils/tokenSign'
 
-export class UserAuthenticatioController {
+export class UserAuthenticationController {
   constructor() {
     this.authenticate.bind(this.compareCryptedPassword)
   }
@@ -20,7 +19,7 @@ export class UserAuthenticatioController {
 
   authenticate = async (req: Request, res: Response) => {
     const { email, password }: IUserAuthenticationRequestDTO = req.body
-    const findedUser = await findUserByEmailUseCase.handle({ email })
+    const findedUser = await findUserUseCase.handle({ query: { email } })
 
     const result = await this.compareCryptedPassword(
       password,

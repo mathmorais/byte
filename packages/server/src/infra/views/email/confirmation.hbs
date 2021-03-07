@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+  <title>Confimation Email</title>
+</head>
+<style type="text/css">
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    table {
+      border-collapse: separate;
+    }
+
+    a,
+    a:link,
+    a:visited {
+      text-decoration: none;
+      color: #00788a;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    h2,
+    h2 a,
+    h2 a:visited,
+    h3,
+    h3 a,
+    h3 a:visited,
+    h4,
+    h5,
+    h6,
+    .t_cht {
+      color: #000 !important;
+    }
+
+    .ExternalClass p,
+    .ExternalClass span,
+    .ExternalClass font,
+    .ExternalClass td {
+      line-height: 100%;
+    }
+
+    .ExternalClass {
+      width: 100%;
+    }
+  }
+</style>
+
+<body style="
+      mso-line-height-rule: 2;
+      max-width: 700px;
+      margin: auto;
+      font-family: Arial, Helvetica, sans-serif;
+    ">
+  <table width="100%" cellspacing="10" cellpadding="5" border="0">
+    <tr>
+      <td style="border-bottom: 2px solid #21ae9f">
+        <h1 style="font-size: 30px; font-weight: bold">TechBlog</h1>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2 style="text-align: center; font-size: 26px; font-weight: bold">
+          Welcome to the TechBlog!
+        </h2>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2 style="line-height: 32px; font-size: 22px; font-weight: normal">
+          Thanks for register in the blog {{name}}, to finish your
+          registration please confirm your email address by clicking on the
+          button below.
+        </h2>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">
+        <a title="Click to confirm your email" href="http://localhost:5050/api/users/verify/{{id}}">
+          <button style="
+                border-radius: 6px;
+                color: #fff;
+                font-size: 22px;
+                padding-top: 9px;
+                padding-bottom: 9px;
+                padding-right: 36px;
+                padding-left: 36px;
+                background-color: #21ae9f;
+                border: none;
+                cursor: pointer;
+              ">
+            <svg style="vertical-align: middle; margin-right: 2px" xmlns="http://www.w3.org/2000/svg" height="30px"
+              viewBox="0 0 28 25" width="30px" fill="#fff">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
+            Confirm Email
+          </button>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 25px 0">
+        <span style="color: #788895; font-size: 18px; font-weight: medium">- TechBlog
+        </span>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

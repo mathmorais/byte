@@ -6,6 +6,7 @@ const mongoLoader = async () => {
     await mongoose.connect(config.database.connection, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
+      useFindAndModify: false,
     })
   } else {
     throw new Error('Check enviroment varibles, someone can be undefined')

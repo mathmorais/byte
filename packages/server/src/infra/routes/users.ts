@@ -1,34 +1,29 @@
-import { Router } from 'express'
-import { UserCreatorController } from './controllers/User/UserCreator/UserCreatorController'
-import { UserCreatorValidateController } from './controllers/User/UserCreator/UserCreatorValidateController'
-import { SendMailController } from './controllers/Email/SendMail/SendMailController'
-import { UserAuthenticatioController } from './controllers/User/UserAuthentication/UserAuthenticationController'
-import { UserAuthenticationValidateController } from './controllers/User/UserAuthentication/UserAuthenticationValidateController'
+import express from 'express'
+import * as UserCreator from './controllers/User/UserCreator'
+import * as UserAuthentication from './controllers/User/UserAuthentication/'
+import * as SendMail from './controllers/Email/SendMail/'
+import * as UserVerify from './controllers/User/UserVerify'
 
-const isOnDevelopmentEnviroment = process.env.NODE_ENV === 'dev'
-const usersRouter = Router()
+const router = express.Router()
 
-const userCreator = new UserCreatorController()
-const userCreatorValidate = new UserCreatorValidateController()
-
-const userAuthentication = new UserAuthenticatioController()
-const userAuthenticationValidate = new UserAuthenticationValidateController()
-const sendMailController = new SendMailController()
-
-usersRouter.post(
+router.post(
   '/create',
-  userCreatorValidate.validatePassword,
-  userCreatorValidate.validateEmail,
-  userCreator.create,
-  isOnDevelopmentEnviroment
-    ? sendMailController.sendDevelopment
-    : sendMailController.send
+  UserCreator.userCreatorValidate.validateEmail,
+  UserCreator.userCreatorValidate.validatePassword,
+  UserCreator.userCreatorController.create,
+  SendMail.sendMailController.sendDevelopment
 )
 
-usersRouter.post(
+router.post(
   '/auth',
-  userAuthenticationValidate.validateUserExist,
-  userAuthentication.authenticate
+  UserAuthentication.userAuthenticationValidate.validateUserExist,
+  UserAuthentication.userAuthenticationController.authenticate
 )
 
-export { usersRouter }
+router.get(
+  '/verify/:id',
+  UserVerify.userVerifyValidate.validateUserExist,
+  UserVerify.userVerifyController.emailVerify
+)
+
+export default router

@@ -5,6 +5,8 @@ export class CreateUserUseCase {
   constructor(private createUserRepository: ICreateUserRepository) {}
 
   async handle(credentials: CreateUserDTO) {
-    return await this.createUserRepository.create({ credentials })
+    if (credentials)
+      return await this.createUserRepository.create({ credentials })
+    throw new Error('Missing credentials properties')
   }
 }

@@ -1,9 +1,5 @@
 import { Router } from 'express'
 
-const postRouter = Router()
+const router = Router()
 
-postRouter.get('/route', (req, res) => {
-  res.send('Posts route')
-})
-
-export { postRouter }
+export default router

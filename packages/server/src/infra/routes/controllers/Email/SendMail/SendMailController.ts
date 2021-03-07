@@ -5,12 +5,12 @@ import { ISendMailRequestDTO } from './SendMailRequestDTO'
 import { config } from '@infra/config'
 import { SendMailGenerator } from './SendMailGenerator'
 import { tokenSign } from '@infra/utils/tokenSign'
-import { findUserByEmailUseCase } from '@app/useCases/UserSeaching/FindUserByEmail'
+import { findUserUseCase } from '@app/useCases/UserSeaching/FindUser'
 
 export class SendMailController extends SendMailGenerator {
   private getUserId = async (email: string) => {
-    const user = await findUserByEmailUseCase.handle({
-      email,
+    const user = await findUserUseCase.handle({
+      query: { email },
     })
 
     return user!.id
@@ -28,11 +28,10 @@ export class SendMailController extends SendMailGenerator {
     const transportOptions = this.generateMailTrasport(developmentAccount)
 
     const compiledHTML = this.generateHtmlBody({
-      fileName: 'presentation.hbs',
+      fileName: 'confirmation.hbs',
       fileVariables: {
         id: userId,
         name,
-        token: tokenSign({ id: userId }),
       },
     })
 
@@ -41,7 +40,7 @@ export class SendMailController extends SendMailGenerator {
         from: 'Techblog <gm80648@gmail.com>',
         to: email,
         html: compiledHTML,
-        subject: 'Testing',
+        subject: 'Please confirm your email',
       },
       transportOptions,
     })

@@ -1,4 +1,4 @@
-import { ISendMailRespository } from '@app/providers/Email/SendMail/SendMailRepository'
+import { ISendMailRespository } from '@app/repositories/Email/SendMail/SendMailRepository'
 import { ISendMailDTO } from './SendMailDTO'
 
 export class SendMailUseCase {

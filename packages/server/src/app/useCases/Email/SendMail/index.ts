@@ -1,4 +1,4 @@
-import { SendMailImplementations } from '@app/providers/Email/SendMail/SendMailImplementations'
+import { SendMailImplementations } from '@app/repositories/Email/SendMail/SendMailImplementations'
 import { SendMailUseCase } from './SendMailUseCase'
 
 const sendMailImplementations = new SendMailImplementations()

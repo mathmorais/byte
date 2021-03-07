@@ -23,7 +23,7 @@ export class SendMailGenerator {
   generateHtmlBody(props: IHTMLProps) {
     const filePath = path.resolve(
       __dirname,
-      `../../../../views/Email/${props.fileName}`
+      `../../../../views/email/${props.fileName}`
     )
     const fileContent = fileSystem.readFileSync(filePath).toString()
 
