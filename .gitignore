@@ -107,8 +107,6 @@ dist
 # FuseBox cache
 .fusebox/
 
-# DynamoDB Local files
-.dynamodb/
 
 # TernJS port file
 .tern-port
@@ -138,14 +136,10 @@ sketch
 !.yarn/sdks
 !.yarn/versions
 
-# if you are NOT using Zero-installs, then:
-# comment the following lines
-!.yarn/cache
-
 # Docker volumes
 docker
 
-# and uncomment the following lines
-# .pnp.*
+and uncomment the following lines
+.pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/node,react,yarn

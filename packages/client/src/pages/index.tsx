@@ -1,24 +1,24 @@
 import React from 'react'
+import Image from 'next/image'
+import theme from 'src/constants/theme'
+import Head from 'next/head'
 import SignUpComponent from '@components/SignUp'
 import { Container } from '@styles/Container'
-import theme from 'src/constants/theme'
 import { Content } from '@styles/Content'
 import { LogoBackground, LogoBackgroundContent } from '@styles/LogoBackground'
-import Head from 'next/head'
-import Image from 'next/image'
+import PopupComponent from '@components/Popup'
 
 const Register: React.FC = () => {
   return (
     <Container background={theme.colors.primary.light}>
       <Head>
-        <link as='image' rel='prefetch' href='/logo.png' />
         <title>Techblog - Register</title>
       </Head>
       <LogoBackground>
         <LogoBackgroundContent>
           <Image
-            priority
             objectFit='contain'
+            priority
             layout='fill'
             src='/logo.png'
             alt='Logo'
@@ -26,6 +26,7 @@ const Register: React.FC = () => {
         </LogoBackgroundContent>
       </LogoBackground>
       <Content>
+        <PopupComponent />
         <SignUpComponent />
       </Content>
     </Container>

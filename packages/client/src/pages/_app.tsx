@@ -1,12 +1,15 @@
 import React from 'react'
-import { AppProps } from 'next/app'
-import { ThemeProvider } from 'styled-components'
 import theme from '../constants/theme'
 import Global from '../styles/Global'
 import Head from 'next/head'
+import { Provider } from 'react-redux'
+import { AppProps } from 'next/app'
+import { ThemeProvider } from 'styled-components'
 import { useRouter } from 'next/dist/client/router'
+import { store } from '@store/index'
+import { GetServerSideProps } from 'next'
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const { pathname } = useRouter()
 
   const getCurrentPath = () => {
@@ -26,14 +29,16 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const currentPath = getCurrentPath()
 
   return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <title>TechBlog - {capitalizePath(currentPath)}</title>
-      </Head>
-      <Global />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Head>
+          <title>TechBlog - {capitalizePath(currentPath)}</title>
+        </Head>
+        <Global />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </Provider>
   )
 }
 
-export default MyApp
+export default App

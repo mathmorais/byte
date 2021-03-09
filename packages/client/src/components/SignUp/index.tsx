@@ -1,14 +1,29 @@
-import React from 'react'
+import React, { MutableRefObject } from 'react'
+import Button from '@components/Button'
+import Link from 'next/link'
+import Form from '@components/Form'
+import axios from 'axios'
 import { ExtraLarge, ExtraSmall, Medium } from '@styles/Typography'
 import { SignUpWrapper, SignUpTop, SignUpForm, SignUpBelow } from './styles'
 import { createRef } from 'src/utils/createRef'
 import { MdPersonOutline, MdMailOutline, MdLockOutline } from 'react-icons/md'
-import Form from '@components/Form'
-import Button from '@components/Button'
-import Link from 'next/link'
+import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/dist/client/router'
+import { throwPopupMessage } from 'src/utils/throwPopup'
+import * as validations from 'src/utils/Form/valitations'
+import { getFieldsData } from 'src/utils/Form/getFieldsData'
+
+interface ISignUpRefs {
+  name: MutableRefObject<HTMLInputElement>
+  email: MutableRefObject<HTMLInputElement>
+  password: MutableRefObject<HTMLInputElement>
+  confirmPassword: MutableRefObject<HTMLInputElement>
+}
 
 const SignUpComponent: React.FC = () => {
-  const refs = {}
+  const refs = {} as ISignUpRefs
+  const router = useRouter()
+  const dispatch = useDispatch()
 
   const inputs = [
     {
@@ -16,7 +31,6 @@ const SignUpComponent: React.FC = () => {
       options: {
         Icon: MdPersonOutline,
         placeholder: 'Name',
-        minLength: 3,
         required: true,
       },
     },
@@ -25,7 +39,6 @@ const SignUpComponent: React.FC = () => {
       options: {
         Icon: MdMailOutline,
         placeholder: 'Email',
-        type: 'email',
         autoComplete: 'email',
         required: true,
       },
@@ -52,6 +65,35 @@ const SignUpComponent: React.FC = () => {
     },
   ]
 
+  const handleRegister = async () => {
+    const URL = 'http://localhost:5050/api/users/create'
+    const FIELDS = getFieldsData(refs)
+
+    try {
+      await axios.post(URL, FIELDS)
+      throwPopupMessage('Account Created', 'warning', dispatch)
+      handleRedirect()
+    } catch (err) {
+      const errorData = err.response.data
+      throwPopupMessage(errorData.message, 'warning', dispatch)
+    }
+  }
+
+  const handleRedirect = () => {
+    router.push('/login')
+  }
+
+  const handleSubmit = () => {
+    try {
+      validations.handleFieldsFilled(refs)
+      validations.handlePasswordLenght(refs.password)
+      validations.handlePasswordsMatch(refs.password, refs.confirmPassword)
+      handleRegister()
+    } catch (err) {
+      throwPopupMessage(err.message, 'warning', dispatch)
+    }
+  }
+
   return (
     <SignUpWrapper>
       <SignUpTop>
@@ -62,7 +104,13 @@ const SignUpComponent: React.FC = () => {
       </SignUpTop>
       <SignUpForm>
         <Form inputs={inputs}>
-          <Button>Sign up</Button>
+          <Button
+            props={{
+              onClick: handleSubmit,
+            }}
+          >
+            Sign up
+          </Button>
         </Form>
       </SignUpForm>
       <SignUpBelow>

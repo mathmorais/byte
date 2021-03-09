@@ -1,4 +1,4 @@
-import React, { FormEvent, ReactChildren } from 'react'
+import React, { FormEvent } from 'react'
 import { Form } from './styles'
 import Input, { IInputProps } from '../Input/index'
 
@@ -24,7 +24,7 @@ const FormComponent = ({ inputs, children }: IFormProps) => {
   }
 
   return (
-    <Form onSubmit={preventDefaultSubmit}>
+    <Form onSubmit={preventDefaultSubmit} noValidate>
       {renderInputs()}
       {children}
     </Form>
