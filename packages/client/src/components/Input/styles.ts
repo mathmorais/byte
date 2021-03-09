@@ -8,14 +8,14 @@ export const InputContainer = styled.div`
   background: ${props => props.theme.colors.primary.darkest};
   box-shadow: ${props => props.theme.others.defaultBoxShadow};
   border-radius: 150px;
-  padding: 18.5px 15px;
+  padding: 17px 15px;
 
   svg {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
     background: ${props => props.theme.colors.primary.light};
-    padding: 8px 9px;
     border-radius: 100%;
     margin-right: 15px;
     transition: all 0.15s ease-in;

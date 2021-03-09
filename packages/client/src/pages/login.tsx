@@ -5,6 +5,7 @@ import { Container } from '@styles/Container'
 import { Content } from '@styles/Content'
 import { LogoBackground, LogoBackgroundContent } from '@styles/LogoBackground'
 import Image from 'next/image'
+import PopupComponent from '@components/Popup'
 
 const Login: React.FC = () => {
   return (
@@ -12,8 +13,8 @@ const Login: React.FC = () => {
       <LogoBackground>
         <LogoBackgroundContent>
           <Image
-            priority
             objectFit='contain'
+            priority
             layout='fill'
             src='/logo.png'
             alt='Logo'
@@ -21,10 +22,13 @@ const Login: React.FC = () => {
         </LogoBackgroundContent>
       </LogoBackground>
       <Content>
+        <PopupComponent />
         <LoginComponent />
       </Content>
     </Container>
   )
 }
+
+
 
 export default Login
