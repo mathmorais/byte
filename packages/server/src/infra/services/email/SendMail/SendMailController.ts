@@ -1,10 +1,9 @@
-import { getTestMessageUrl, createTestAccount } from 'nodemailer'
+import { createTestAccount } from 'nodemailer'
 import { sendMailUseCase } from '@app/useCases/Email/SendMail'
 import { Request, Response } from 'express'
 import { ISendMailRequestDTO } from './SendMailRequestDTO'
 import { config } from '@infra/config'
 import { SendMailGenerator } from './SendMailGenerator'
-import { tokenSign } from '@infra/utils/tokenSign'
 import { findUserUseCase } from '@app/useCases/UserSeaching/FindUser'
 
 export class SendMailController extends SendMailGenerator {
@@ -17,37 +16,36 @@ export class SendMailController extends SendMailGenerator {
   }
 
   sendDevelopment = async (req: Request, res: Response) => {
-    const { email, name }: ISendMailRequestDTO = req.body
+    const crendetials: ISendMailRequestDTO = req.body
 
     res.status(201).send({
       message: 'Created',
     })
 
-    const userId = await this.getUserId(email)
+    const findedId = await this.getUserId(crendetials.email)
     const developmentAccount = await createTestAccount()
     const transportOptions = this.generateMailTrasport(developmentAccount)
 
     const compiledHTML = this.generateHtmlBody({
       fileName: 'confirmation.hbs',
       fileVariables: {
-        id: userId,
-        name,
+        id: findedId,
+        name: crendetials.email,
       },
     })
 
     const configuredMail = this.generateConfiguredMail({
       sendOptions: {
-        from: 'Techblog <gm80648@gmail.com>',
-        to: email,
+        from: 'TechBlog <gm80648@gmail.com>',
+        to: crendetials.email,
         html: compiledHTML,
-        subject: 'Please confirm your email',
+        subject: '[TechBlog] Please confirm your email',
       },
       transportOptions,
     })
 
     try {
-      const info = await sendMailUseCase.handle(configuredMail)
-      return console.log(getTestMessageUrl(info))
+      return await sendMailUseCase.handle(configuredMail)
     } catch (err) {
       throw new Error(err.message)
     }

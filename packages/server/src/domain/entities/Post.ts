@@ -6,14 +6,12 @@ export class Post {
   title!: string
   content!: string
   views!: number
+  background!: string
   tags!: string[]
   comments!: Comment[]
+  read_time!: number
 
-  constructor(props: Omit<Post, 'id'>, id?: string) {
+  constructor(props: Omit<Post, 'id'>) {
     Object.assign(this, props)
-
-    if (id) {
-      this.id = id
-    }
   }
 }

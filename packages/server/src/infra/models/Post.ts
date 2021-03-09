@@ -27,13 +27,13 @@ const PostCommentSchema = new Schema({
 const PostSchema = new Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
-  views: { type: Number, required: true },
+  background: { type: String, required: false },
+  views: { type: Number, required: true, default: 0 },
   read_time: { type: Number, required: true },
-  tags: [
-    {
-      name: String,
-    },
-  ],
+  tags: {
+    type: [String],
+    default: [],
+  },
   comments: {
     default: [],
     type: [PostCommentSchema],

@@ -1,6 +1,5 @@
 import dotenv from 'dotenv'
 import { SignOptions } from 'jsonwebtoken'
-import SMTPTransport from 'nodemailer/lib/smtp-transport'
 
 dotenv.config({
   path: './src/infra/.env',

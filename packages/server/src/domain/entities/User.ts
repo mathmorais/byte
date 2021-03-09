@@ -8,11 +8,7 @@ export class User {
   email_verified?: boolean
   admin?: boolean
 
-  constructor(props: Omit<User, 'id'>, id?: string) {
+  constructor(props: Omit<User, 'id'>) {
     Object.assign(this, props)
-
-    if (id) {
-      this.id = id
-    }
   }
 }

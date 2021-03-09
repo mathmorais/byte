@@ -41,6 +41,7 @@ describe('User authentication', () => {
     await mongoLoader()
   })
   afterAll(async done => {
+    await UserModel.deleteMany({})
     await mongoose.connection.close()
     done()
   })
@@ -68,21 +69,5 @@ describe('User authentication', () => {
   })
   it("Should return 401 when user doesn't exist", async done => {
     request(app).post('/api/users/auth').send({}).expect(401, done)
-  })
-})
-
-describe('User email verify', () => {
-  beforeAll(async () => {
-    await mongoLoader()
-  })
-  afterAll(async done => {
-    await UserModel.deleteMany({})
-    await mongoose.connection.close()
-    done()
-  })
-
-  it('Should return 302 when user exist', async done => {
-    const userID = '6041420bade56900327fda32'
-    request(app).get(`/api/users/verify/${userID}`).expect(302, done)
   })
 })

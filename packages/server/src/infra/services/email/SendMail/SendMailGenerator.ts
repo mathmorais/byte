@@ -1,5 +1,5 @@
 import SMTPTransport from 'nodemailer/lib/smtp-transport'
-import { MailConfig } from '@infra/services/MailConfig'
+import { MailConfig } from '../MailConfig'
 import { compile } from 'handlebars'
 import path from 'path'
 import fileSystem from 'fs'
@@ -23,7 +23,7 @@ export class SendMailGenerator {
   generateHtmlBody(props: IHTMLProps) {
     const filePath = path.resolve(
       __dirname,
-      `../../../../views/email/${props.fileName}`
+      `../../../views/email/${props.fileName}`
     )
     const fileContent = fileSystem.readFileSync(filePath).toString()
 
