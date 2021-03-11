@@ -1,5 +1,17 @@
+import { ContainerWrapper, Container } from '@styles/Container'
+import theme from 'src/constants/theme'
+
 const Home: React.FC = () => {
-  return <h1>Home</h1>
+  return (
+    <ContainerWrapper
+      padding={'45px 55px'}
+      background={theme.colors.tertiary.light}
+    >
+      <Container>
+        <h1>Test</h1>
+      </Container>
+    </ContainerWrapper>
+  )
 }
 
 export default Home

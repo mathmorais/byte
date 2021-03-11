@@ -1,5 +1,20 @@
 import { Request, Response } from 'express'
+import { tokenVerifyUseCase } from '@app/useCases/Token/TokenVerify'
 
 export class TokenVerifyController {
-  verify = async (req: Request, res: Response) => {}
+  verify = (req: Request, res: Response) => {
+    const token = req.headers.authorization ?? ''
+
+    try {
+      tokenVerifyUseCase.handle({ token })
+
+      return res.status(200).json({
+        message: 'Authorized',
+      })
+    } catch (err) {
+      return res.status(401).json({
+        message: err.message,
+      })
+    }
+  }
 }

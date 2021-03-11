@@ -1,34 +1,65 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LoginComponent from '@components/Login'
 import theme from 'src/constants/theme'
-import { Container } from '@styles/Container'
+import { ContainerWrapper, Container } from '@styles/Container'
 import { Content } from '@styles/Content'
 import { LogoBackground, LogoBackgroundContent } from '@styles/LogoBackground'
 import Image from 'next/image'
 import PopupComponent from '@components/Popup'
+import axios from 'axios'
+import { GetServerSideProps } from 'next'
+import Cookies from 'js-cookie'
 
 const Login: React.FC = () => {
+  useEffect(() => {
+    Cookies.remove('auth_token')
+  }, [])
+
   return (
-    <Container background={theme.colors.primary.light}>
-      <LogoBackground>
-        <LogoBackgroundContent>
-          <Image
-            objectFit='contain'
-            priority
-            layout='fill'
-            src='/logo.png'
-            alt='Logo'
-          />
-        </LogoBackgroundContent>
-      </LogoBackground>
-      <Content>
-        <PopupComponent />
-        <LoginComponent />
-      </Content>
-    </Container>
+    <ContainerWrapper background={theme.colors.primary.light}>
+      <Container fillScreen>
+        <LogoBackground>
+          <LogoBackgroundContent>
+            <Image
+              objectFit='contain'
+              priority
+              layout='fill'
+              src='/logo.png'
+              alt='Logo'
+            />
+          </LogoBackgroundContent>
+        </LogoBackground>
+        <Content>
+          <PopupComponent />
+          <LoginComponent />
+        </Content>
+      </Container>
+    </ContainerWrapper>
   )
 }
 
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const url = 'http://server:5050/api/token/verify' ?? ''
+  const auth_token = ctx.req.cookies.auth_token
 
+  try {
+    await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${auth_token}`,
+      },
+    })
+
+    return {
+      redirect: {
+        destination: '/blog/home',
+        statusCode: 301,
+      },
+    }
+  } catch (err) {
+    return {
+      props: {},
+    }
+  }
+}
 
 export default Login
