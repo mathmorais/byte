@@ -1,4 +1,4 @@
-use('techblog-test')
+use('techblog')
 
-db.users.deleteMany({})
+db.users.find()
 

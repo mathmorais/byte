@@ -1,11 +1,8 @@
 import { Router } from 'express'
+import { tokenVerifyController } from './controllers/TokenVerify'
 
 const router = Router()
 
-router.get('/verify/:token', (req, res) => {
-  const { token } = req.params
-
-  res.send(`${token}`)
-})
+router.get('/verify', tokenVerifyController.verify)
 
 export default router

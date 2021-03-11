@@ -7,7 +7,8 @@ import { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 import { useRouter } from 'next/dist/client/router'
 import { store } from '@store/index'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
+import SideBarComponent from '@components/SideBar'
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const { pathname } = useRouter()
@@ -28,13 +29,21 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   const currentPath = getCurrentPath()
 
+  const inOnAuthPages = () => {
+    const isIndexPage = currentPath === ''
+    const isLoginPage = currentPath === 'login'
+
+    return isIndexPage || isLoginPage
+  }
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Head>
           <title>TechBlog - {capitalizePath(currentPath)}</title>
         </Head>
-        <Global />
+        {inOnAuthPages() === false ? <SideBarComponent /> : null}
+        <Global includesNextGrid={inOnAuthPages() === false ? true : false} />
         <Component {...pageProps} />
       </ThemeProvider>
     </Provider>

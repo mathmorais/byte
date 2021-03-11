@@ -35,7 +35,7 @@ const config = {
     publicKey: process.env.PUBLIC_KEY,
     config: <SignOptions>{
       algorithm: 'RS256',
-      expiresIn: '7d',
+      expiresIn: '30d',
     },
   },
   mail: ({
