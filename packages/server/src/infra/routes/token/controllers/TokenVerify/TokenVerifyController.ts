@@ -6,10 +6,10 @@ export class TokenVerifyController {
     const token = req.headers.authorization ?? ''
 
     try {
-      tokenVerifyUseCase.handle({ token })
+      const tokenBody = tokenVerifyUseCase.handle({ token })
 
       return res.status(200).json({
-        message: 'Authorized',
+        message: tokenBody,
       })
     } catch (err) {
       return res.status(401).json({

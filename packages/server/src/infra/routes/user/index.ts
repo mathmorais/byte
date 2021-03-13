@@ -12,6 +12,7 @@ import {
   userVerifyValidate,
 } from './controllers/UserVerify'
 import { sendMailController } from '@infra/services/email/SendMail'
+import { userFindController } from './controllers/UserFind'
 
 const router = express.Router()
 
@@ -34,5 +35,7 @@ router.get(
   userVerifyValidate.validateUserExist,
   userVerifyController.emailVerify
 )
+
+router.get('/find/:id', userFindController.findById)
 
 export default router

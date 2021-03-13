@@ -11,8 +11,6 @@ const Global = createGlobalStyle<IGlobalProps>`
         box-sizing: border-box;
     }
 
-    
-
     :root {
       font-size: 62.5%;
     }
@@ -25,10 +23,10 @@ const Global = createGlobalStyle<IGlobalProps>`
       return (
         props.includesNextGrid &&
         `
-  #__next {
-    display: grid;
-    grid-template: 100vh / minmax(90px, 5%) 1fr;
-  }`
+      #__next {
+        display: grid;
+        grid-template: minmax(100vh, 100%) / minmax(80px, 4%) 1fr;
+      }`
       )
     }}
 `

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import LoginComponent from '@components/Login'
+import LoginComponent from '@components/Pages/Login'
 import theme from 'src/constants/theme'
 import { ContainerWrapper, Container } from '@styles/Container'
 import { Content } from '@styles/Content'

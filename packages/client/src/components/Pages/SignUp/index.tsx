@@ -99,7 +99,7 @@ const SignUpComponent: React.FC = () => {
       <SignUpTop>
         <ExtraLarge fontWeight='bold'>Sign up</ExtraLarge>
         <Medium as='p'>
-          A blog for peoples who like technology and programming like me :).
+          A blog for people who like technology and programming like me :).
         </Medium>
       </SignUpTop>
       <SignUpForm>

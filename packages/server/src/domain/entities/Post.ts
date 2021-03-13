@@ -1,15 +1,18 @@
 import { ObjectId } from 'mongoose'
-import { Comment } from './Comment'
 
 export class Post {
-  readonly id!: string | ObjectId
+  id?: string | ObjectId
   title!: string
   content!: string
   views!: number
-  background!: string
+  thumbnail!: string
   tags!: string[]
-  comments!: Comment[]
+  comments!: {
+    user: string
+    comment: string
+  }[]
   read_time!: number
+  creation_time?: Date
 
   constructor(props: Omit<Post, 'id'>) {
     Object.assign(this, props)

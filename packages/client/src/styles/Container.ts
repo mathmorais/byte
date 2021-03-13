@@ -6,6 +6,7 @@ interface IContainerWrapperProps {
 }
 interface IContainerProps {
   fillScreen?: boolean
+  flexDirection?: string
 }
 
 const ContainerWrapper = styled.div<IContainerWrapperProps>`
@@ -17,6 +18,7 @@ const ContainerWrapper = styled.div<IContainerWrapperProps>`
 
 const Container = styled.div<IContainerProps>`
   display: flex;
+  flex-direction: ${props => props.flexDirection || 'initial'};
   min-height: ${props => (props.fillScreen ? '100vh' : 'initial')};
   max-width: 1440px;
   margin: auto;

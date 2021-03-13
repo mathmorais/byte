@@ -1,17 +1,20 @@
-import { ContainerWrapper, Container } from '@styles/Container'
-import theme from 'src/constants/theme'
+import SectionPage from '@components/SectionPage/index'
+import HomeComponent from '@components/Pages/Home'
+import { GetStaticProps } from 'next'
 
-const Home: React.FC = () => {
+const Home: React.FC = props => {
   return (
-    <ContainerWrapper
-      padding={'45px 55px'}
-      background={theme.colors.tertiary.light}
-    >
-      <Container>
-        <h1>Test</h1>
-      </Container>
-    </ContainerWrapper>
+    <SectionPage title='Home'>
+      <HomeComponent />
+    </SectionPage>
   )
 }
 
 export default Home
+
+export const getStaticProps: GetStaticProps = async ctx => {
+  return {
+    props: {},
+    revalidate: 60,
+  }
+}

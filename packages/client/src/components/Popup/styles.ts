@@ -5,11 +5,14 @@ const loadingAnimation = keyframes`
   100% { width: 0% }
 `
 
-interface IPopupContainerStates {
+interface IPopupContainerProps {
   state: 'warning' | 'success'
 }
+interface IPopupLoadingProps {
+  showTime: string
+}
 
-export const PopupContainer = styled.div<IPopupContainerStates>`
+export const PopupContainer = styled.div<IPopupContainerProps>`
   display: flex;
   justify-content: center;
   width: 200px;
@@ -37,7 +40,7 @@ export const PopupMessage = styled.div`
   margin-bottom: 15px;
 `
 
-export const PopupLoading = styled.div`
+export const PopupLoading = styled.div<IPopupLoadingProps>`
   width: 10%;
   height: 6px;
   position: absolute;
@@ -46,7 +49,7 @@ export const PopupLoading = styled.div`
   left: 0;
   border-radius: 0 0 4px 4px;
   animation-name: ${loadingAnimation};
-  animation-duration: 5s;
+  animation-duration: ${props => props.showTime || 'initial'};
   animation-delay: 250ms;
   animation-fill-mode: both;
   animation-timing-function: linear;
