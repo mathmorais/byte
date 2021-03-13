@@ -7,8 +7,7 @@ import { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 import { useRouter } from 'next/dist/client/router'
 import { store } from '@store/index'
-import { GetStaticProps } from 'next'
-import SideBarComponent from '@components/SideBar'
+import SideBar from '@components/SideBar'
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const { pathname } = useRouter()
@@ -29,21 +28,24 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   const currentPath = getCurrentPath()
 
-  const inOnAuthPages = () => {
+  const isOnAuthPages = () => {
     const isIndexPage = currentPath === ''
     const isLoginPage = currentPath === 'login'
 
     return isIndexPage || isLoginPage
   }
 
+  const CURRENT_PATH = capitalizePath(currentPath)
+  const ON_AUTH_PAGES = isOnAuthPages() === false
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Head>
-          <title>TechBlog - {capitalizePath(currentPath)}</title>
+          <title>TechBlog - {CURRENT_PATH}</title>
         </Head>
-        {inOnAuthPages() === false ? <SideBarComponent /> : null}
-        <Global includesNextGrid={inOnAuthPages() === false ? true : false} />
+        <Global includesNextGrid={ON_AUTH_PAGES ? true : false} />
+        {ON_AUTH_PAGES ? <SideBar /> : null}
         <Component {...pageProps} />
       </ThemeProvider>
     </Provider>
@@ -51,3 +53,13 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 }
 
 export default App
+
+/*
+
+email_verified= boolean
+
+uid=string
+
+reading=string
+
+*/

@@ -1,3 +1,3 @@
-export interface IFindUserByEmailDTO {
+export interface IFindUserDTO {
   query: object
 }

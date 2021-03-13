@@ -5,6 +5,7 @@ interface IUserSchema extends Document {
   email: string
   password: string
   email_verified?: boolean
+  admin?: boolean
 }
 
 export const UserSchema = new Schema({

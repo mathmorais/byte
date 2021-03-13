@@ -1,22 +1,17 @@
 import { Schema, model, Document, now } from 'mongoose'
 
-interface IPostTagsSchema extends Document {
-  tagname: string
-}
-
-interface IPostCommentSchema extends Document {
-  user: string
-  comment: string
-}
-
 interface IPostSchema extends Document {
   title: string
   content: string
   views: number
+  thumbnail: string
   read_time: number
-  tags: IPostTagsSchema[]
-  comments: IPostCommentSchema[] | []
-  creation_time?: string
+  tags: string[]
+  comments: {
+    user: string
+    comment: string
+  }[]
+  creation_time?: Date
 }
 
 const PostCommentSchema = new Schema({
@@ -27,7 +22,7 @@ const PostCommentSchema = new Schema({
 const PostSchema = new Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
-  background: { type: String, required: false },
+  thumbnail: { type: String, required: false },
   views: { type: Number, required: true, default: 0 },
   read_time: { type: Number, required: true },
   tags: {

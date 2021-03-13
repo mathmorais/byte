@@ -14,6 +14,6 @@ export const throwPopupMessage = (
 
     return setTimeout(() => {
       isOnTimeout = false
-    }, 5500)
+    }, 2500)
   }
 }

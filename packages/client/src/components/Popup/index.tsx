@@ -11,7 +11,7 @@ const PopupComponent = () => {
   ) as unknown) as { message: string; state: 'warning' | 'success' }
 
   if (message && state) {
-    const SHOW_TIME = 5500
+    const SHOW_TIME = 2500
 
     setTimeout(() => {
       dipatch(clearPopupAction)
@@ -26,7 +26,7 @@ const PopupComponent = () => {
       <PopupMessage>
         <ExtraSmall as='h3'>{message}</ExtraSmall>
       </PopupMessage>
-      {message && <PopupLoading />}
+      {message && <PopupLoading showTime='2.25s' />}
     </PopupContainer>
   )
 }

@@ -1,4 +1,4 @@
 use('techblog')
 
-db.users.find()
+db.posts.deleteMany({})
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { SideBar, Logo, Menu, Item, Logout } from './styles'
+import { SideBar, SideBarContent, Logo, Menu, Logout } from './styles'
 import {
   MdHome,
   MdPerson,
@@ -8,10 +8,9 @@ import {
   MdBookmark,
   MdExitToApp,
 } from 'react-icons/md'
-import Link from 'next/link'
-import { useRouter } from 'next/dist/client/router'
-import Cookies from 'js-cookie'
+import { useRouter } from 'next/router'
 import { removeAllCookies } from 'src/utils/Cookies/removeAllCokies'
+import MenuItems from './MenuItems'
 
 const SideBarComponent = () => {
   const router = useRouter()
@@ -47,43 +46,25 @@ const SideBarComponent = () => {
     }
   }
 
-  const MenuItems = () => {
-    return (
-      <>
-        {actions.map((action, index) => {
-          return (
-            <Link href={action.href}>
-              <Item
-                aria-label={`Go to ${action.name}`}
-                key={index}
-                name={action.name}
-              >
-                {<action.icon />}
-              </Item>
-            </Link>
-          )
-        })}
-      </>
-    )
-  }
-
   return (
     <SideBar>
-      <Logo>
-        <Image
-          width='100%'
-          height='100%'
-          layout='responsive'
-          src='/logo.png'
-          priority
-        />
-      </Logo>
-      <Menu>
-        <MenuItems />
-      </Menu>
-      <Logout onClick={handleLogout} aria-label='Logout' title='Logout'>
-        <MdExitToApp />
-      </Logout>
+      <SideBarContent>
+        <Logo>
+          <Image
+            width='100%'
+            height='100%'
+            layout='responsive'
+            src='/logo.png'
+            priority
+          />
+        </Logo>
+        <Menu>
+          <MenuItems actions={actions} />
+        </Menu>
+        <Logout onClick={handleLogout} aria-label='Logout' title='Logout'>
+          <MdExitToApp />
+        </Logout>
+      </SideBarContent>
     </SideBar>
   )
 }
