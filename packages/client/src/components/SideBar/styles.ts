@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const SideBar = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 3;
 `
 export const SideBarContent = styled.div`
   display: flex;

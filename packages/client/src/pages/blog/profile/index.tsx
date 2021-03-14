@@ -51,8 +51,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   const URL = 'http://server:5050/api/token/verify'
   const { auth_token } = ctx.req.cookies
 
-  console.log('Rerunning')
-
   let returnData = null
 
   try {
