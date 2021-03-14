@@ -4,31 +4,33 @@ interface ITypographyOptions {
   fontWeight?: string
 }
 
-const TypographyBase = styled.h1<ITypographyOptions>`
-  font-weight: ${props => props.fontWeight || 'revert'};
-`
-
-export const ExtraLarge = styled(TypographyBase)`
+export const ExtraLarge = styled.h1<ITypographyOptions>`
   font-size: ${props => props.theme.sizes.ExtraLarge.fontSize};
   line-height: ${props => props.theme.sizes.ExtraLarge.lineHeight};
+  font-weight: ${props => props.fontWeight || 'revert'};
 `
-export const Large = styled(TypographyBase)`
+export const Large = styled.h2<ITypographyOptions>`
   font-size: ${props => props.theme.sizes.Large.fontSize};
   line-height: ${props => props.theme.sizes.Large.lineHeight};
+  font-weight: ${props => props.fontWeight || 'revert'};
 `
-export const ExtraMedium = styled(TypographyBase)`
+export const ExtraMedium = styled.h3<ITypographyOptions>`
   font-size: ${props => props.theme.sizes.ExtraMedium.fontSize};
   line-height: ${props => props.theme.sizes.ExtraMedium.lineHeight};
+  font-weight: ${props => props.fontWeight || 'revert'};
 `
-export const Medium = styled(TypographyBase)`
+export const Medium = styled.p<ITypographyOptions>`
   font-size: ${props => props.theme.sizes.Medium.fontSize};
   line-height: ${props => props.theme.sizes.Medium.lineHeight};
+  font-weight: ${props => props.fontWeight || 'revert'};
 `
-export const ExtraSmall = styled(TypographyBase)`
+export const ExtraSmall = styled.p<ITypographyOptions>`
   font-size: ${props => props.theme.sizes.ExtraSmall.fontSize};
   line-height: ${props => props.theme.sizes.ExtraSmall.lineHeight};
+  font-weight: ${props => props.fontWeight || 'revert'};
 `
-export const Small = styled(TypographyBase)`
+export const Small = styled.p<ITypographyOptions>`
   font-size: ${props => props.theme.sizes.Small.fontSize};
   line-height: ${props => props.theme.sizes.Small.lineHeight};
+  font-weight: ${props => props.fontWeight || 'revert'};
 `

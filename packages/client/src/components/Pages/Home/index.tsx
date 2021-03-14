@@ -1,32 +1,33 @@
 import React from 'react'
+import Post, { IArticleProps } from './Article'
 import { HomeContainer } from './styles'
-import Post, { IPostProps } from './Post'
-import { Large } from '@styles/Typography'
+import SectionPage from '@components/SectionPage'
 
 interface IHomeProps {
-  posts: IPostProps[]
+  posts: IArticleProps[]
 }
 
 const HomeComponent: React.FC<IHomeProps> = props => {
   const RenderPosts = () => {
-    if (props.posts) {
-      return (
-        <>
-          {props.posts.map((post, index) => (
-            <Post key={index} {...post} />
-          ))}
-        </>
-      )
-    }
-
-    return <Large>No posts found</Large>
+    return (
+      <>
+        {props.posts.map((post, index) => (
+          <Post key={index} {...post} />
+        ))}
+      </>
+    )
   }
 
-  return (
-    <HomeContainer>
-      <RenderPosts />
-    </HomeContainer>
-  )
+  if (props.posts)
+    return (
+      <SectionPage title='Home'>
+        <HomeContainer>
+          <RenderPosts />
+        </HomeContainer>
+      </SectionPage>
+    )
+
+  return <SectionPage title='None posts found' />
 }
 
 export default HomeComponent

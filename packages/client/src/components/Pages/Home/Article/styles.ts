@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
 export const PostContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: fit-content;
+  height: 310px;
   border-radius: 26px;
   background: ${props => props.theme.colors.neutral.light};
   cursor: pointer;
@@ -19,7 +21,7 @@ export const PostThumbnail = styled.div`
   background: ${props => props.theme.colors.neutral.light};
   position: relative;
   border-radius: 26px;
-  height: 160px;
+  height: 100%;
 
   img {
     border-radius: 26px 26px 0 0;
@@ -27,9 +29,11 @@ export const PostThumbnail = styled.div`
 `
 
 export const PostInfo = styled.div`
-  height: 100%;
   width: 100%;
+  height: 100%;
   display: flex;
+  align-self: flex-end;
+  justify-content: space-between;
   flex-direction: column;
   padding: 14px 12px;
 `
@@ -69,7 +73,7 @@ export const PostInfoTitle = styled.div`
   margin-bottom: 15px;
 
   h5 {
-    font-weight: 500;
+    font-weight: 400;
   }
 `
 
@@ -83,8 +87,8 @@ export const PostInfoTagItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3px 20px;
-  margin-right: 25px;
+  padding: 4px 20px;
+  margin-right: 10px;
   background: ${props => props.theme.colors.secondary.light};
   border-radius: 100px;
 `

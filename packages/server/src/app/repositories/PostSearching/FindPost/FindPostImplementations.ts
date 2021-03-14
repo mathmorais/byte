@@ -5,4 +5,8 @@ export class FindPostImplementations implements IFindPostRepository {
   async find(query: object) {
     return await PostModel.find({ ...query })
   }
+
+  async findOne(query: object) {
+    return await PostModel.findOne({ ...query })
+  }
 }

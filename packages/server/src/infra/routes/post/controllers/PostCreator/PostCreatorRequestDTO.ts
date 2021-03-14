@@ -1,8 +1,9 @@
 export interface IPostCreatorRequestDTO {
-  [key: string]: any
-  title: string
+  infos: {
+    title: string
+    read_time: number
+    thumbnail: string
+  }
   content: string
-  read_time: number
   tags: string[]
-  background: string
 }

@@ -15,4 +15,6 @@ router.post(
 
 router.get('/search/all', postSearchingController.searchAll)
 
+router.get('/search/:id', postSearchingController.searchOne)
+
 export default router

@@ -10,7 +10,6 @@ describe('Post creation', () => {
     await mongoLoader()
   })
   afterAll(async done => {
-    await PostModel.deleteMany({})
     await mongoose.connection.close()
     done()
   })
@@ -25,5 +24,30 @@ describe('Post creation', () => {
     }
 
     request(app).post('/api/posts/create').send(credentials).expect(201, done)
+  })
+})
+
+describe('Post searching', () => {
+  let createdPostId: string = ''
+
+  beforeAll(async () => {
+    await mongoLoader()
+  })
+  afterAll(async done => {
+    await PostModel.deleteMany({})
+    await mongoose.connection.close()
+    done()
+  })
+  it('Should return all posts of posts when called', async done => {
+    const { body } = await request(app).get('/api/posts/search/all')
+
+    expect(body.message.length).toBeGreaterThanOrEqual(1)
+  })
+  it('Should return an unique post when called', async done => {
+    const { body } = await request(app).get(
+      `/api/posts/search/${createdPostId}`
+    )
+
+    expect(body.message.length).toBeLessThanOrEqual(1)
   })
 })

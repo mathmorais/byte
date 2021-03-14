@@ -7,7 +7,7 @@ export const Item = styled.div<{ name: string; marked: boolean }>`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  padding: 20px 0;
+  padding: 30px 0;
   transition: background 0.25s ease;
 
   &:hover {
@@ -57,7 +57,7 @@ export const Item = styled.div<{ name: string; marked: boolean }>`
 
   svg {
     color: ${props => props.theme.colors.neutral.dark};
-    width: clamp(15px, 4vw, 30px);
-    height: clamp(15px, 4vh, 30px);
+    width: clamp(15px, 4vw, 25px);
+    height: clamp(15px, 4vh, 25px);
   }
 `

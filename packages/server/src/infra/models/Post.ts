@@ -1,17 +1,19 @@
 import { Schema, model, Document, now } from 'mongoose'
 
 interface IPostSchema extends Document {
-  title: string
+  infos: {
+    title: string
+    read_time: number
+    views: number
+    thumbnail: string
+    creation_time?: Date
+  }
   content: string
-  views: number
-  thumbnail: string
-  read_time: number
   tags: string[]
   comments: {
     user: string
     comment: string
   }[]
-  creation_time?: Date
 }
 
 const PostCommentSchema = new Schema({
@@ -20,11 +22,14 @@ const PostCommentSchema = new Schema({
 })
 
 const PostSchema = new Schema({
-  title: { type: String, required: true },
+  infos: {
+    title: { type: String, required: true },
+    read_time: { type: Number, required: true },
+    thumbnail: { type: String, required: false },
+    views: { type: Number, default: 0 },
+    creation_time: { type: Date, default: now() },
+  },
   content: { type: String, required: true },
-  thumbnail: { type: String, required: false },
-  views: { type: Number, required: true, default: 0 },
-  read_time: { type: Number, required: true },
   tags: {
     type: [String],
     default: [],
@@ -33,7 +38,6 @@ const PostSchema = new Schema({
     default: [],
     type: [PostCommentSchema],
   },
-  creation_time: { type: Date, default: now() },
 })
 
 const PostModel = model<IPostSchema>('Post', PostSchema)
