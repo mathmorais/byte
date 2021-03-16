@@ -11,9 +11,15 @@ import {
 import { useRouter } from 'next/router'
 import { removeAllCookies } from 'src/utils/Cookies/removeAllCokies'
 import MenuItems from './MenuItems'
+import Cookies from 'js-cookie'
 
 const SideBarComponent = () => {
   const router = useRouter()
+
+  const checkReadingCookie = (): string => {
+    return Cookies.get('reading_article')
+  }
+
   const actions = [
     {
       name: 'Home',
@@ -30,11 +36,13 @@ const SideBarComponent = () => {
       href: '/blog/search',
       icon: MdSearch,
     },
-    {
-      name: 'Reading',
-      href: '/blog/article',
-      icon: MdBookmark,
-    },
+    checkReadingCookie()
+      ? {
+          name: 'Reading',
+          href: `/blog/article/${checkReadingCookie()}`,
+          icon: MdBookmark,
+        }
+      : null,
   ]
 
   const handleLogout = () => {

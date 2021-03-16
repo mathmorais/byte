@@ -1,6 +1,5 @@
 import { ITokenVerifyRepository } from './TokenVerifyRepository'
 import { config } from '@infra/config'
-import { Token } from '@domain/entities/Token'
 import jwt from 'jsonwebtoken'
 
 export class TokenVerifyImplementations implements ITokenVerifyRepository {

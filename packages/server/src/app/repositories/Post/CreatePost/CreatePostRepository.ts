@@ -1,9 +1,11 @@
 export interface ICreatePostCredentials {
-  title: string
+  infos: {
+    title: string
+    read_time: number
+    thumbnail: string
+  }
   content: string
   tags: string[]
-  read_time: number
-  background: string
 }
 
 export interface ICreatePostRepository {

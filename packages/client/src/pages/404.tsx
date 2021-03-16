@@ -5,11 +5,11 @@ import { Large, ExtraMedium } from '@styles/Typography'
 
 const NotFoundPage = () => {
   return (
-    <SectionPage title='404'>
+    <SectionPage title='404' fillScreen>
       <Large>I think you are lost</Large>
       <Link href='/blog/home'>
-        <ExtraMedium fontWeight='200'>
-          Go back to <strong>Home</strong>
+        <ExtraMedium fontWeight='400'>
+          Go back t o <strong>Home</strong>
         </ExtraMedium>
       </Link>
     </SectionPage>

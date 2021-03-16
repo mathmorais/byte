@@ -15,6 +15,7 @@ const Global = createGlobalStyle<IGlobalProps>`
       font-size: 62.5%;
     }
 
+
     body {
       font-family: 'Roboto', sans-serif;
     }
@@ -24,6 +25,7 @@ const Global = createGlobalStyle<IGlobalProps>`
         props.includesNextGrid &&
         `
       #__next {
+        min-height: 100vh;
         display: grid;
         grid-template: minmax(100vh, 100%) / minmax(80px, 4%) 1fr;
       }`

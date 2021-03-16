@@ -1,6 +1,4 @@
-import { Token } from '@domain/entities/Token'
-
 export interface ITokenVerifyRepository {
-  verify(token: string): void
+  verify(token: string): string | object
   formatToken(token: string): string
 }

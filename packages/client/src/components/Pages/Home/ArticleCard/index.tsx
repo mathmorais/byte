@@ -1,14 +1,14 @@
 import React from 'react'
 import {
-  PostContainer,
-  PostThumbnail,
-  PostInfo,
-  PostInfoDetails,
-  PostInfoDetailsItem,
-  PostInfoDetailsRight,
-  PostInfoTitle,
-  PostInfoTags,
-  PostInfoTagItem,
+  ArticleCardContainer,
+  ArticleCardThumbnail,
+  ArticleCardInfo,
+  ArticleCardInfoDetails,
+  ArticleCardInfoDetailsItem,
+  ArticleCardInfoDetailsRight,
+  ArticleCardInfoTitle,
+  ArticleCardInfoTags,
+  ArticleCardInfoTagItem,
 } from './styles'
 import Image from 'next/image'
 import { Medium, ExtraSmall, Small } from '@styles/Typography'
@@ -35,7 +35,7 @@ export interface IArticleProps {
   comments: IArticleComment[]
 }
 
-const PostComponent: React.FC<IArticleProps> = ({
+const ArticlePreviewComponent: React.FC<IArticleProps> = ({
   _id,
   tags,
   comments,
@@ -59,9 +59,9 @@ const PostComponent: React.FC<IArticleProps> = ({
       <>
         {tags.map((tag, index) => {
           return (
-            <PostInfoTagItem key={index}>
+            <ArticleCardInfoTagItem key={index}>
               <Small>{tag}</Small>
-            </PostInfoTagItem>
+            </ArticleCardInfoTagItem>
           )
         })}
       </>
@@ -70,8 +70,8 @@ const PostComponent: React.FC<IArticleProps> = ({
 
   return (
     <Link href={`/blog/article/${_id}`}>
-      <PostContainer>
-        <PostThumbnail>
+      <ArticleCardContainer>
+        <ArticleCardThumbnail>
           <Image
             priority
             objectFit='cover'
@@ -81,34 +81,34 @@ const PostComponent: React.FC<IArticleProps> = ({
             quality='30'
             alt='thumbnail'
           />
-        </PostThumbnail>
-        <PostInfo>
-          <PostInfoDetails>
-            <PostInfoDetailsItem>
+        </ArticleCardThumbnail>
+        <ArticleCardInfo>
+          <ArticleCardInfoDetails>
+            <ArticleCardInfoDetailsItem>
               <MdAvTimer />
               <ExtraSmall>{handleformatTime(infos.read_time)}</ExtraSmall>
-            </PostInfoDetailsItem>
-            <PostInfoDetailsRight>
-              <PostInfoDetailsItem>
+            </ArticleCardInfoDetailsItem>
+            <ArticleCardInfoDetailsRight>
+              <ArticleCardInfoDetailsItem>
                 <MdVisibility />
                 <ExtraSmall>{infos.views}</ExtraSmall>
-              </PostInfoDetailsItem>
-              <PostInfoDetailsItem>
+              </ArticleCardInfoDetailsItem>
+              <ArticleCardInfoDetailsItem>
                 <MdChatBubble />
                 <ExtraSmall>{comments.length}</ExtraSmall>
-              </PostInfoDetailsItem>
-            </PostInfoDetailsRight>
-          </PostInfoDetails>
-          <PostInfoTitle>
+              </ArticleCardInfoDetailsItem>
+            </ArticleCardInfoDetailsRight>
+          </ArticleCardInfoDetails>
+          <ArticleCardInfoTitle>
             <Medium as='h5'>{infos.title}</Medium>
-          </PostInfoTitle>
-          <PostInfoTags>
+          </ArticleCardInfoTitle>
+          <ArticleCardInfoTags>
             <TagsItem />
-          </PostInfoTags>
-        </PostInfo>
-      </PostContainer>
+          </ArticleCardInfoTags>
+        </ArticleCardInfo>
+      </ArticleCardContainer>
     </Link>
   )
 }
 
-export default PostComponent
+export default ArticlePreviewComponent

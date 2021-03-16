@@ -9,6 +9,7 @@ const router = Router()
 
 router.post(
   '/create',
+  postCreatorValidate.validateToken,
   postCreatorValidate.validateCredentials,
   postCreatorController.create
 )

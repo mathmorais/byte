@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
-export const Item = styled.div<{ name: string; marked: boolean }>`
+interface IItemProps {
+  name: string
+  marked: boolean
+}
+
+export const Item = styled.div<IItemProps>`
   width: 100%;
   position: relative;
   display: flex;

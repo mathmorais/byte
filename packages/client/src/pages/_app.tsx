@@ -28,15 +28,18 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   const currentPath = getCurrentPath()
 
-  const isOnAuthPages = () => {
-    const isIndexPage = currentPath === ''
-    const isLoginPage = currentPath === 'login'
+  const handleNonSidebarPages = () => {
+    const seletedPages = {
+      '/': true,
+      '/login': true,
+      '/404': true,
+    }
 
-    return isIndexPage || isLoginPage
+    return seletedPages[pathname]
   }
 
   const CURRENT_PATH = capitalizePath(currentPath)
-  const ON_AUTH_PAGES = isOnAuthPages() === false
+  const nonSideBarPages = handleNonSidebarPages()
 
   return (
     <Provider store={store}>
@@ -44,8 +47,8 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
         <Head>
           <title>TechBlog - {CURRENT_PATH}</title>
         </Head>
-        <Global includesNextGrid={ON_AUTH_PAGES ? true : false} />
-        {ON_AUTH_PAGES ? <SideBar /> : null}
+        <Global includesNextGrid={nonSideBarPages ? false : true} />
+        {nonSideBarPages ? null : <SideBar />}
         <Component {...pageProps} />
       </ThemeProvider>
     </Provider>

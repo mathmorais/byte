@@ -48,7 +48,7 @@ const Profile: React.FC<IProfileProps> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const URL = 'http://server:5050/api/token/verify'
+  const URL = 'http://localhost:5050/api/token/verify'
   const { auth_token } = ctx.req.cookies
 
   let returnData = null
