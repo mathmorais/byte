@@ -45,7 +45,7 @@ const Register: React.FC = () => {
 export default Register
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const url = 'http://server:5050/api/token/verify'
+  const url = 'http://localhost:5050/api/token/verify'
   const auth_token = ctx.req.cookies.auth_token ?? ''
 
   try {

@@ -10,6 +10,8 @@ interface IContainerProps {
 }
 
 const ContainerWrapper = styled.div<IContainerWrapperProps>`
+  position: relative;
+
   width: 100%;
   height: 100%;
   background: ${props => props.background || '#FFF'};

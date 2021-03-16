@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { IconType } from 'react-icons'
 import { Item } from './styles'
+import Cookies from 'js-cookie'
 
 interface IMenuItemsActions {
   actions: {
@@ -15,25 +16,36 @@ interface IMenuItemsActions {
 const MenuItemsComponent: React.FC<IMenuItemsActions> = props => {
   const router = useRouter()
 
-  const ONE_INDEX = 1
   const splitedPathname = router.pathname.split('/')
-  const lastItem = splitedPathname.length - ONE_INDEX
+  const lastItem = splitedPathname.length - 1
   const currentPath = splitedPathname[lastItem]
+
+  const handleMarkedItem = (action: string) => {
+    const isOnReadingAction = action === 'Reading'
+
+    if (isOnReadingAction) {
+      return router.pathname.includes('article')
+    } else {
+      return action.toLowerCase() === currentPath
+    }
+  }
 
   return (
     <>
       {props.actions.map((action, index) => {
-        return (
-          <Link scroll={false} key={index} href={action.href}>
-            <Item
-              marked={action.name.toLowerCase() === currentPath}
-              aria-label={`Go to ${action.name}`}
-              name={action.name}
-            >
-              <action.icon />
-            </Item>
-          </Link>
-        )
+        if (action) {
+          return (
+            <Link scroll={false} key={index} href={action.href}>
+              <Item
+                marked={handleMarkedItem(action.name)}
+                aria-label={`Go to ${action.name}`}
+                name={action.name}
+              >
+                <action.icon />
+              </Item>
+            </Link>
+          )
+        }
       })}
     </>
   )

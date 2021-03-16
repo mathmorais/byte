@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const PostContainer = styled.div`
+export const ArticleCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -9,15 +9,15 @@ export const PostContainer = styled.div`
   background: ${props => props.theme.colors.neutral.light};
   cursor: pointer;
   box-shadow: ${props => props.theme.others.defaultBoxShadow};
-  transition: all 0.25s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 
   &:hover {
-    transform: translateY(-5px) scale(1.02);
+    transform: translate3d(0, -5px, 0) scale(1.05);
     box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.15);
   }
 `
 
-export const PostThumbnail = styled.div`
+export const ArticleCardThumbnail = styled.div`
   background: ${props => props.theme.colors.neutral.light};
   position: relative;
   border-radius: 26px;
@@ -28,7 +28,7 @@ export const PostThumbnail = styled.div`
   }
 `
 
-export const PostInfo = styled.div`
+export const ArticleCardInfo = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -38,13 +38,13 @@ export const PostInfo = styled.div`
   padding: 14px 12px;
 `
 
-export const PostInfoDetails = styled.div`
+export const ArticleCardInfoDetails = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
 `
 
-export const PostInfoDetailsItem = styled.div`
+export const ArticleCardInfoDetailsItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,9 +56,13 @@ export const PostInfoDetailsItem = styled.div`
     height: 14px;
     margin-right: 5px;
   }
+
+  p {
+    font-weight: bold;
+  }
 `
 
-export const PostInfoDetailsRight = styled.div`
+export const ArticleCardInfoDetailsRight = styled.div`
   display: flex;
 
   div:last-of-type {
@@ -66,7 +70,7 @@ export const PostInfoDetailsRight = styled.div`
   }
 `
 
-export const PostInfoTitle = styled.div`
+export const ArticleCardInfoTitle = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -77,13 +81,13 @@ export const PostInfoTitle = styled.div`
   }
 `
 
-export const PostInfoTags = styled.div`
+export const ArticleCardInfoTags = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
 `
 
-export const PostInfoTagItem = styled.div`
+export const ArticleCardInfoTagItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,4 +95,8 @@ export const PostInfoTagItem = styled.div`
   margin-right: 10px;
   background: ${props => props.theme.colors.secondary.light};
   border-radius: 100px;
+
+  p {
+    font-weight: 500;
+  }
 `

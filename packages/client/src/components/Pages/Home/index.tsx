@@ -1,5 +1,5 @@
 import React from 'react'
-import Post, { IArticleProps } from './Article'
+import Post, { IArticleProps } from './ArticleCard'
 import { HomeContainer } from './styles'
 import SectionPage from '@components/SectionPage'
 

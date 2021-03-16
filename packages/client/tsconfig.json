@@ -26,7 +26,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/Pages/Home/styles..s"
+    "src/components/Pages/Home/styles..s",
+    "src/components/Pages/Article/Create/MarkdownOutput/index.tsX"
   ],
   "exclude": ["node_modules"]
 }

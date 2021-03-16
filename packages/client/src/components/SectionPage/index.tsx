@@ -6,18 +6,20 @@ import { SectionTitle } from './styles'
 
 interface ISectionPageProps {
   title?: string
+  fillScreen?: boolean
 }
 
 const SectionPageComponent: React.FC<ISectionPageProps> = ({
   children,
   title,
+  ...rest
 }) => {
   return (
     <ContainerWrapper
       padding={'45px 55px'}
       background={theme.colors.tertiary.light}
     >
-      <Container flexDirection='column'>
+      <Container flexDirection='column' {...rest}>
         {title ? (
           <SectionTitle>
             <Large fontWeight='400' as='h1'>
