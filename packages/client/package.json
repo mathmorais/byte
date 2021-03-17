@@ -8,8 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@mdx-js/loader": "^1.6.22",
-    "@next/mdx": "^10.0.8",
     "axios": "^0.21.1",
     "js-cookie": "^2.2.1",
     "mdx": "^0.3.1",
@@ -27,7 +25,6 @@
   },
   "devDependencies": {
     "@types/js-cookie": "^2.2.6",
-    "@types/mdx-js__react": "^1.5.3",
     "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
     "@types/react-redux": "^7.1.16",

@@ -3,6 +3,7 @@ import axios from 'axios'
 import SectionPage from '@components/SectionPage'
 import { GetServerSideProps } from 'next'
 import ProfileComponent from '@components/Pages/Profile'
+import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 
 interface IProfileProps {
   id: string
@@ -25,8 +26,10 @@ const Profile: React.FC<IProfileProps> = props => {
   useEffect(() => {
     if (ID_EXIST) {
       const getUserData = async () => {
+        const currentApiUrl = checkCurrentEnviroment()
+
         const response = await axios.get(
-          `http://localhost:5050/api/users/find/${props.id}`
+          `${currentApiUrl}/api/users/find/${props.id}`
         )
 
         setUserData(response.data.message)
@@ -48,7 +51,8 @@ const Profile: React.FC<IProfileProps> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const URL = 'http://localhost:5050/api/token/verify'
+  const currentApiUrl = checkCurrentEnviroment()
+  const URL = `${currentApiUrl}/token/verify`
   const { auth_token } = ctx.req.cookies
 
   let returnData = null

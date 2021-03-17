@@ -6,6 +6,7 @@ import ArticleComponent from '@components/Pages/Article'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { IArticleProps } from '@components/Pages/Home/ArticleCard'
 import { MdxRemote } from 'next-mdx-remote/types'
+import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 
 const Article: React.FC<{ post: IArticleProps; content: MdxRemote.Source }> = ({
   post,
@@ -19,7 +20,9 @@ const Article: React.FC<{ post: IArticleProps; content: MdxRemote.Source }> = ({
 export default Article
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const URL = 'http://localhost:5050/api/posts/search/all'
+  const currentApiUrl = checkCurrentEnviroment()
+
+  const URL = `${currentApiUrl}/posts/search/all`
   const { data } = await axios.get(URL)
   const posts: IArticleProps[] = data.message
 
@@ -35,7 +38,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ctx => {
   const { id } = ctx.params
-  const URL = `http://localhost:5050/api/posts/search/${id}`
+  const currentApiUrl = checkCurrentEnviroment()
+  const URL = `${currentApiUrl}/posts/search/${id}`
 
   const { data } = await axios.get(URL)
 

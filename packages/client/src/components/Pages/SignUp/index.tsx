@@ -12,6 +12,7 @@ import { useRouter } from 'next/dist/client/router'
 import { throwPopupMessage } from 'src/utils/throwPopup'
 import * as validations from 'src/utils/Form/valitations'
 import { getFieldsData } from 'src/utils/Form/getFieldsData'
+import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 
 interface ISignUpRefs {
   name: MutableRefObject<HTMLInputElement>
@@ -66,7 +67,9 @@ const SignUpComponent: React.FC = () => {
   ]
 
   const handleRegister = async () => {
-    const URL = 'http://localhost:5050/api/users/create'
+    const currentApiUrl = checkCurrentEnviroment()
+
+    const URL = `${currentApiUrl}/users/create`
     const FIELDS = getFieldsData(refs)
 
     try {

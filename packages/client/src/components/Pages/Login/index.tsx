@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux'
 import { getFieldsData } from 'src/utils/Form/getFieldsData'
 import { useRouter } from 'next/dist/client/router'
 import axios from 'axios'
+import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 
 interface ILoginRefs {
   email: MutableRefObject<HTMLInputElement>
@@ -50,7 +51,8 @@ const LoginComponent: React.FC = () => {
   ]
 
   const handleAuthorization = async () => {
-    const URL = 'http://localhost:5050/api/users/auth'
+    const currentApiUrl = checkCurrentEnviroment()
+    const URL = `${currentApiUrl}/users/auth`
     const FIELDS = getFieldsData(refs)
 
     try {

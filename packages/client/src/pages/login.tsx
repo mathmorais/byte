@@ -9,6 +9,7 @@ import PopupComponent from '@components/Popup'
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import Cookies from 'js-cookie'
+import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 
 const Login: React.FC = () => {
   useEffect(() => {
@@ -39,7 +40,9 @@ const Login: React.FC = () => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const url = 'http://localhost:5050/api/token/verify' ?? ''
+  const currentApiUrl = checkCurrentEnviroment()
+
+  const url = `${currentApiUrl}/token/verify` ?? ''
   const auth_token = ctx.req.cookies.auth_token
 
   try {
