@@ -1,8 +1,8 @@
-import React, { memo, MouseEvent, useEffect, useState } from 'react'
+import React, { memo } from 'react'
 import unified from 'unified'
 import remarkParse from 'remark-parse'
 import remarkReactParse from 'remark-react'
-import { MarkdownOutput, MarkdownTitle } from './styles'
+import { MarkdownOutput } from './styles'
 
 interface IMarkdownOutput {
   components?: Partial<{
@@ -36,7 +36,6 @@ const MardownOutputComponent: React.FC<IMarkdownOutput> = ({
 
   return (
     <MarkdownOutput>
-      <MarkdownTitle placeholder='The title of your article' />
       <MarkdownContent />
     </MarkdownOutput>
   )

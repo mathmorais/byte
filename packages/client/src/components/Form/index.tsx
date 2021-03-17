@@ -2,14 +2,14 @@ import React, { FormEvent } from 'react'
 import { Form } from './styles'
 import Input, { IInputProps } from '../Input/index'
 
-interface IInput {
+export interface IInput {
   ref: React.MutableRefObject<HTMLInputElement>
   options: IInputProps
 }
 
 interface IFormProps {
   inputs: IInput[]
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 const FormComponent = ({ inputs, children }: IFormProps) => {

@@ -21,13 +21,7 @@ const MenuItemsComponent: React.FC<IMenuItemsActions> = props => {
   const currentPath = splitedPathname[lastItem]
 
   const handleMarkedItem = (action: string) => {
-    const isOnReadingAction = action === 'Reading'
-
-    if (isOnReadingAction) {
-      return router.pathname.includes('article')
-    } else {
-      return action.toLowerCase() === currentPath
-    }
+    return action.toLowerCase() === currentPath
   }
 
   return (
@@ -51,4 +45,4 @@ const MenuItemsComponent: React.FC<IMenuItemsActions> = props => {
   )
 }
 
-export default memo(MenuItemsComponent)
+export default MenuItemsComponent

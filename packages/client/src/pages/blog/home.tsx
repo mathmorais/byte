@@ -2,6 +2,7 @@ import HomeComponent from '@components/Pages/Home'
 import { GetStaticProps } from 'next'
 import axios from 'axios'
 import { IArticleProps } from '@components/Pages/Home/ArticleCard'
+import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 
 interface IHomeProps {
   posts: IArticleProps[]
@@ -14,7 +15,8 @@ const Home: React.FC<IHomeProps> = props => {
 export default Home
 
 export const getStaticProps: GetStaticProps = async ctx => {
-  const URL = 'http://localhost:5050/api/posts/search/all'
+  const currentApiUrl = checkCurrentEnviroment()
+  const URL = `${currentApiUrl}/posts/search/all`
   const { data } = await axios.get(URL)
 
   return {
