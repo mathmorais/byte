@@ -1,6 +1,6 @@
 import HomeComponent from '@components/Pages/Home'
-import { GetStaticProps } from 'next'
 import axios from 'axios'
+import { GetStaticProps } from 'next'
 import { IArticleProps } from '@components/Pages/Home/ArticleCard'
 import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 

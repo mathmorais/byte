@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import SectionPage from '@components/SectionPage'
 import Head from 'next/head'
 import Image from 'next/image'

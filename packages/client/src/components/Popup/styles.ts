@@ -9,7 +9,7 @@ interface IPopupContainerProps {
   state: 'warning' | 'success'
 }
 interface IPopupLoadingProps {
-  showTime: string
+  loadingTime: string
 }
 
 export const PopupContainer = styled.div<IPopupContainerProps>`
@@ -49,7 +49,7 @@ export const PopupLoading = styled.div<IPopupLoadingProps>`
   left: 0;
   border-radius: 0 0 4px 4px;
   animation-name: ${loadingAnimation};
-  animation-duration: ${props => props.showTime || 'initial'};
+  animation-duration: ${props => props.loadingTime || 'initial'};
   animation-delay: 250ms;
   animation-fill-mode: both;
   animation-timing-function: linear;

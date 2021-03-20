@@ -20,7 +20,8 @@ export const MarkdownInputWrapper = styled.div`
 
 export const MarkdownInputContent = styled.div`
   display: flex;
-  width: 40%;
+  width: clamp(500px, 60%, 800px);
+
   height: 100%;
   flex-direction: column;
   justify-content: center;
@@ -55,7 +56,7 @@ export const MarkdownInput = styled.textarea`
 
 export const MarkdownInputTopBar = styled.div`
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   border-bottom: 2px solid ${props => props.theme.colors.tertiary.light};
   padding: 15px;
@@ -104,10 +105,23 @@ export const MarkdownInputTopBarDropdownAction = styled.div`
   padding: 20px 15px;
   transition: background 0.25s ease;
   cursor: pointer;
-
   user-select: none;
 
   &:hover {
     background: rgba(0, 0, 0, 0.1);
   }
 `
+
+export const MarkdownInputTopBarButtonSubmit = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+`
+
+// Create thumbnail on craete preview page
+// Create filter system on backend
+// Create filter page on client
+// Optmize articles performance
+// Create a loading spinner at article loading time
+//  Fix sidebar to prevent non admin users to enter on create article page

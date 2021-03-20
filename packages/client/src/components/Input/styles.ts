@@ -17,7 +17,7 @@ export const InputContainer = styled.div`
     padding: 5px;
     background: ${props => props.theme.colors.primary.light};
     border-radius: 100%;
-    margin-right: 15px;
+    margin-right: 50px;
     transition: all 0.15s ease-in;
   }
 `
@@ -31,10 +31,9 @@ export const Input = styled.input`
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
   outline: none;
-  margin-left: 50px;
 
   &::placeholder {
-    color: ${props => props.theme.colors.tertiary.light};
+    color: inherit;
     opacity: 0.3;
   }
 

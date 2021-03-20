@@ -8,13 +8,14 @@ import { IconType } from 'react-icons'
 import { InputContainer, Input } from './styles'
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  Icon: IconType
+  containerStyle?: React.CSSProperties
+  Icon?: IconType
 }
 
 const InputComponent: ForwardRefRenderFunction<
   HTMLInputElement,
   IInputProps
-> = ({ Icon, ...rest }, ref) => {
+> = ({ Icon, containerStyle, ...rest }, ref) => {
   const handleFocusInput = () => {
     const { current } = ref as React.MutableRefObject<HTMLInputElement>
 
@@ -22,9 +23,9 @@ const InputComponent: ForwardRefRenderFunction<
   }
 
   return (
-    <InputContainer onClick={handleFocusInput}>
+    <InputContainer style={containerStyle} onClick={handleFocusInput}>
       <Input {...rest} ref={ref} />
-      <Icon />
+      {Icon ? <Icon /> : null}
     </InputContainer>
   )
 }

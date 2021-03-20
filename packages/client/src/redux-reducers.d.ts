@@ -1,8 +1,6 @@
 import 'react-redux'
-import { reducers } from '@store/index'
-
-type Reducers = typeof reducers
+import { RootState } from '@store/index'
 
 declare module 'react-redux' {
-  interface DefaultRootState extends Reducers {}
+  interface DefaultRootState extends RootState {}
 }

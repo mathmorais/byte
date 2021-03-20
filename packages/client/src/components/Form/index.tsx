@@ -18,9 +18,11 @@ const FormComponent = ({ inputs, children }: IFormProps) => {
   }
 
   const renderInputs = () => {
-    return inputs.map((input, index) => (
-      <Input {...input.options} ref={input.ref} key={index} />
-    ))
+    if (inputs) {
+      return inputs.map((input, index) => (
+        <Input {...input.options} ref={input.ref} key={index} />
+      ))
+    }
   }
 
   return (
