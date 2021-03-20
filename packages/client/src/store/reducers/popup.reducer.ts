@@ -1,6 +1,14 @@
 import { IReducer } from '../typescript/types'
 
-const throwPopupReducer = (state = { message: '', state: '' }, action) => {
+const POPUP_STATE = {
+  message: '',
+  state: '',
+}
+
+const throwPopupReducer: IReducer<typeof POPUP_STATE> = (
+  state = POPUP_STATE,
+  action
+) => {
   switch (action.type) {
     case 'THROW_POPUP':
       return { ...state, ...action.payload }
@@ -11,4 +19,4 @@ const throwPopupReducer = (state = { message: '', state: '' }, action) => {
   }
 }
 
-export { throwPopupReducer }
+export { throwPopupReducer, POPUP_STATE }

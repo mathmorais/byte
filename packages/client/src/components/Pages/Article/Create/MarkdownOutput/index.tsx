@@ -2,33 +2,41 @@ import React, { memo } from 'react'
 import unified from 'unified'
 import remarkParse from 'remark-parse'
 import remarkReactParse from 'remark-react'
-import { MarkdownOutput } from './styles'
+import { MarkdownOutput, MarkdownOutputTitle } from './styles'
+import {
+  ExtraLarge,
+  ExtraMedium,
+  ExtraSmall,
+  Large,
+  Medium,
+} from '@styles/Typography'
+import Image from 'next/image'
+import { unsplashLoader } from 'src/utils/Image/loader'
 
 interface IMarkdownOutput {
-  components?: Partial<{
-    h1: object
-    h2: object
-    h3: object
-    h4: object
-    h5: object
-    h6: object
-    code: object
-    img: object
-    link: object
-  }>
-  cursorPosition?: number
+  title: string
   markdown: string
+  thumbnail: string
 }
 
 const MardownOutputComponent: React.FC<IMarkdownOutput> = ({
-  components,
   markdown,
+  title,
+  thumbnail,
 }) => {
   const MarkdownContent = (): React.ReactElement => {
+    const components = {
+      h1: ExtraLarge,
+      h2: Large,
+      h3: ExtraMedium,
+      h4: Medium,
+      p: ExtraSmall,
+    }
+
     const unifiedProcessor = unified()
     const { result } = unifiedProcessor
       .use(remarkParse)
-      .use(remarkReactParse, components)
+      .use(remarkReactParse, { ...components })
       .processSync(markdown)
 
     return result as React.ReactElement
@@ -36,6 +44,12 @@ const MardownOutputComponent: React.FC<IMarkdownOutput> = ({
 
   return (
     <MarkdownOutput>
+      <MarkdownOutputTitle>
+        <Large>{title}</Large>
+      </MarkdownOutputTitle>
+      {thumbnail ? (
+        <Image layout='fill' loader={unsplashLoader} src={thumbnail} />
+      ) : null}
       <MarkdownContent />
     </MarkdownOutput>
   )

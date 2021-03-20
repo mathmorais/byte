@@ -3,6 +3,4 @@ export interface IAction {
   payload?: any
 }
 
-export interface IReducer<S> {
-  (state: S, action: IAction)
-}
+export type IReducer<S> = (state?: S, action?: IAction) => S

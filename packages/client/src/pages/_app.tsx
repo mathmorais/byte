@@ -12,6 +12,7 @@ import SideBar from '@components/SideBar'
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const { pathname } = useRouter()
 
+  console.log(pathname)
   const getCurrentPath = () => {
     const splitedPath = pathname.split('/')
     const splitedSize = splitedPath.length
@@ -28,14 +29,14 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   const currentPath = getCurrentPath()
 
-  const handleNonSidebarPages = () => {
-    const seletedPages = {
+  const handleNonSidebarPages = (): boolean => {
+    const nonSideBarPages = {
       '/': true,
       '/login': true,
-      '/404': true,
+      '/_error': true,
     }
 
-    return seletedPages[pathname]
+    return nonSideBarPages[pathname]
   }
 
   const CURRENT_PATH = capitalizePath(currentPath)
@@ -63,6 +64,5 @@ email_verified= boolean
 
 uid=string
 
-reading=string
 
 */

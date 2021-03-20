@@ -29,7 +29,7 @@ const Profile: React.FC<IProfileProps> = props => {
         const currentApiUrl = checkCurrentEnviroment()
 
         const response = await axios.get(
-          `${currentApiUrl}/api/users/find/${props.id}`
+          `${currentApiUrl}/users/find/${props.id}`
         )
 
         setUserData(response.data.message)
