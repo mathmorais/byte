@@ -43,17 +43,22 @@ export default class MyDocument extends Document {
         <Head>
           <link
             rel='dns-prefetch'
-            href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'
+            href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap'
           />
           <link
             rel='preconnect'
-            href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'
+            href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap'
           />
           <link
-            href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'
+            href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap'
             rel='stylesheet'
             crossOrigin='anonymous'
           />
+          <link
+            rel='stylesheet'
+            href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atom-one-dark.min.css'
+          />
+          <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js' />
         </Head>
         <body>
           <Main />
