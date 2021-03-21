@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "highlight.js": "^10.7.1",
     "js-cookie": "^2.2.1",
     "mdx": "^0.3.1",
     "next": "10.0.5",

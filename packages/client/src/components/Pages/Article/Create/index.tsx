@@ -89,8 +89,18 @@ const CreateComponent = () => {
     },
   ]
 
+  const handleWindowScroll = (chars: number) => {
+    window.scrollTo({
+      top: window.screen.height * chars,
+    })
+  }
+
   const handleMarkdownInput = (ev: ChangeEvent<HTMLTextAreaElement>) => {
     const textAreaValue = ev.target.value
+    const currentChars = textAreaValue.length
+
+    handleWindowScroll(currentChars)
+
     return setMarkdownContent(textAreaValue)
   }
 
