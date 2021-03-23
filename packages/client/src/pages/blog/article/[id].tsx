@@ -7,6 +7,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { IArticleProps } from '@components/Pages/Home/ArticleCard'
 import { MdxRemote } from 'next-mdx-remote/types'
 import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
+import Head from 'next/head'
 
 const Article: React.FC<{ post: IArticleProps; content: MdxRemote.Source }> = ({
   post,
@@ -14,7 +15,28 @@ const Article: React.FC<{ post: IArticleProps; content: MdxRemote.Source }> = ({
 }) => {
   const hydratedContent = hydrate(content)
 
-  return <ArticleComponent post={post} content={hydratedContent} />
+  return (
+    <>
+      <Head>
+        <link
+          as='stylesheet'
+          rel='prefetch'
+          href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atom-one-dark.min.css'
+        />
+        <link
+          as='script'
+          rel='prefetch'
+          href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js'
+        />
+        <link
+          rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atom-one-dark.min.css'
+        />
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js' />
+      </Head>
+      <ArticleComponent post={post} content={hydratedContent} />
+    </>
+  )
 }
 
 export default Article
@@ -53,6 +75,5 @@ export const getStaticProps: GetStaticProps = async ctx => {
       content: mdxSource,
       nonParsedContent: content,
     },
-    revalidate: 60,
   }
 }

@@ -1,20 +1,13 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import unified from 'unified'
 import remarkParse from 'remark-parse'
 import remarkReactParse from 'remark-react'
-import {
-  MarkdownOutput,
-  MarkdownOutputTitle,
-  MarkdownOutputThubmnail,
-  MarkdownOutputLink,
-  MarkdownOutputImage,
-  MarkdownOutputCode,
-} from './styles'
-import { ExtraMedium, ExtraLarge, Large, Medium } from '@styles/Typography'
-import { unsplashLoader } from 'src/utils/Image/loader'
-import hljs from 'highlight.js'
 import Image from 'next/image'
-import Link from 'next/link'
+import PopupComponent from '@components/Popup'
+import { MarkdownOutput, MarkdownOutputThubmnail } from './styles'
+import { unsplashLoader } from 'src/utils/Image/loader'
+import { markdownComponents } from '@components/Markdown'
+import { TitleTypography } from '@components/Markdown/Typography'
 
 interface IMarkdownOutput {
   title: string
@@ -22,61 +15,11 @@ interface IMarkdownOutput {
   thumbnail: string
 }
 
-const CodeComponent = ({ children }) => {
-  useEffect(() => {
-    hljs.highlightAll()
-  }, [])
-
-  return (
-    <MarkdownOutputCode>
-      <code>{children}</code>
-    </MarkdownOutputCode>
-  )
-}
-
-const LinkComponent: React.FC<{ href: string }> = memo(({ href, children }) => {
-  return (
-    <MarkdownOutputLink>
-      <Link href={href}>
-        <Medium as='span'>{children}</Medium>
-      </Link>
-    </MarkdownOutputLink>
-  )
-})
-
-const ImageComponent: React.FC<{ src: string }> = memo(({ src }) => {
-  if (src) {
-    return (
-      <MarkdownOutputImage>
-        <Image
-          objectFit='cover'
-          quality='25'
-          layout='fill'
-          loader={unsplashLoader}
-          src={src}
-        />
-      </MarkdownOutputImage>
-    )
-  } else {
-    return null
-  }
-})
-
 const MardownOutputComponent: React.FC<IMarkdownOutput> = ({
   markdown,
   title,
   thumbnail,
 }) => {
-  const components = {
-    h1: ExtraLarge,
-    h2: Large,
-    h3: ExtraMedium,
-    p: Medium,
-    a: LinkComponent,
-    img: ImageComponent,
-    code: CodeComponent,
-  }
-
   const MarkdownContent = memo(
     (): React.ReactElement => {
       const unifiedProcessor = unified()
@@ -84,7 +27,7 @@ const MardownOutputComponent: React.FC<IMarkdownOutput> = ({
       const { result } = unifiedProcessor
         .use(remarkParse)
         .use(remarkReactParse, {
-          remarkReactComponents: components,
+          remarkReactComponents: markdownComponents,
         })
         .processSync(markdown)
 
@@ -92,9 +35,18 @@ const MardownOutputComponent: React.FC<IMarkdownOutput> = ({
     }
   )
 
-  const loadImage = () => {
-    if (thumbnail) {
-      return (
+  const checkThumbnailExist = () => {
+    return thumbnail !== null && thumbnail?.length > 5
+  }
+
+  const checkTitleExist = () => {
+    return title !== null && title?.length >= 1
+  }
+
+  return (
+    <MarkdownOutput>
+      <PopupComponent />
+      {checkThumbnailExist() ? (
         <MarkdownOutputThubmnail>
           <Image
             priority
@@ -105,20 +57,8 @@ const MardownOutputComponent: React.FC<IMarkdownOutput> = ({
             src={thumbnail}
           />
         </MarkdownOutputThubmnail>
-      )
-    }
-    return null
-  }
-
-  return (
-    <MarkdownOutput>
-      {loadImage()}
-      {title ? (
-        <MarkdownOutputTitle>
-          <Large>{title}</Large>
-        </MarkdownOutputTitle>
       ) : null}
-
+      {checkTitleExist() ? <TitleTypography>{title}</TitleTypography> : null}
       <MarkdownContent />
     </MarkdownOutput>
   )

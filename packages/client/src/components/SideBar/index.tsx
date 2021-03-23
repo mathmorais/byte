@@ -52,6 +52,7 @@ const SideBarComponent = () => {
       <SideBarContent>
         <Logo>
           <Image
+            alt='Logo'
             width='100%'
             height='100%'
             layout='responsive'

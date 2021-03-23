@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useEffect, useRef, memo } from 'react'
+import React, { useState, ChangeEvent, useEffect, useRef } from 'react'
 import SectionPage from '@components/SectionPage'
 import {
   MarkdownInput,
@@ -95,14 +95,25 @@ const CreateComponent = () => {
     })
   }
 
-  const handleMarkdownInput = (ev: ChangeEvent<HTMLTextAreaElement>) => {
-    const textAreaValue = ev.target.value
-    const currentChars = textAreaValue.length
+  const handleDebounceInput = () => {
+    let timeout: null | NodeJS.Timeout
 
-    handleWindowScroll(currentChars)
+    return function (value: string, delay: number = 1000) {
+      const currentChars = value.length
 
-    return setMarkdownContent(textAreaValue)
+      clearTimeout(timeout)
+
+      timeout = setTimeout(() => {
+        handleWindowScroll(currentChars)
+        return setMarkdownContent(value)
+      }, delay)
+    }
   }
+
+  const handleInputValue = handleDebounceInput()
+
+  const handleMarkdownInput = (event: ChangeEvent<HTMLTextAreaElement>) =>
+    handleInputValue(event.target.value, 500)
 
   const handleShowDropdown = () => {
     setDropdownShown(!dropdownShown)

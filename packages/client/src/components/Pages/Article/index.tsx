@@ -7,6 +7,7 @@ import { ArticleContainer, ArticleThumbnail } from './styles'
 import { IArticleProps } from '../Home/ArticleCard'
 import { unsplashLoader } from 'src/utils/Image/loader'
 import Cookies from 'js-cookie'
+import { ExtraLarge } from '@styles/Typography'
 
 const ArticleComponent: React.FC<{
   post: IArticleProps
@@ -23,18 +24,20 @@ const ArticleComponent: React.FC<{
       </Head>
       <ArticleContainer>
         <ArticleThumbnail>
-          <Image
-            priority
-            loader={unsplashLoader}
-            layout='fill'
-            objectFit='cover'
-            alt='Thumbnail'
-            quality='5'
-            src={post.infos.thumbnail}
-          />
+          {post.infos.thumbnail ? (
+            <Image
+              priority
+              loader={unsplashLoader}
+              layout='fill'
+              objectFit='cover'
+              alt='Thumbnail'
+              quality='5'
+              src={post.infos.thumbnail}
+            />
+          ) : null}
         </ArticleThumbnail>
         <SectionPage>
-          <ArticleContent content={content} />
+          <ArticleContent title={post.infos.title} content={content} />
         </SectionPage>
       </ArticleContainer>
     </>

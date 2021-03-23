@@ -1,13 +1,8 @@
 import React from 'react'
-import SectionPage from '@components/SectionPage'
-import theme from 'src/constants/theme'
+import SearchComponent from '@components/Pages/Search'
 
 const Search: React.FC = () => {
-  return (
-    <SectionPage title='Search'>
-      <h1>Test</h1>
-    </SectionPage>
-  )
+  return <SearchComponent />
 }
 
 export default Search

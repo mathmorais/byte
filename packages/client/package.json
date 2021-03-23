@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "start:dev": "NODE_ENV=development next dev",
+    "start:production": "NODE_ENV=production next dev",
+    "build": "NODE_ENV=production next build",
     "start": "next start"
   },
   "dependencies": {
