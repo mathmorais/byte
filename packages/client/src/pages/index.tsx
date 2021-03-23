@@ -47,7 +47,6 @@ export default Register
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const currentApiUrl = checkCurrentEnviroment()
-
   const url = `${currentApiUrl}/token/verify`
   const auth_token = ctx.req.cookies.auth_token ?? ''
 

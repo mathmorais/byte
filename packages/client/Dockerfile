@@ -3,3 +3,4 @@ WORKDIR /client
 COPY package*.json .
 RUN yarn
 COPY . .
+CMD [ "yarn", "build" ]

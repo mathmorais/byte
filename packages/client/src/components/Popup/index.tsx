@@ -6,12 +6,12 @@ import { clearPopupAction } from '@store/actions/popup.action'
 
 const PopupComponent = () => {
   const dipatch = useDispatch()
-  const { message, state } = (useSelector(states => states) as unknown) as {
+  const { message, state } = (useSelector(
+    state => state.throwPopup
+  ) as unknown) as {
     message: string
     state: 'warning' | 'success'
   }
-
-  console.log(message)
 
   if (message && state) {
     const SHOW_TIME = 2500

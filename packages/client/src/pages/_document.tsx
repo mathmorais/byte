@@ -54,11 +54,6 @@ export default class MyDocument extends Document {
             rel='stylesheet'
             crossOrigin='anonymous'
           />
-          <link
-            rel='stylesheet'
-            href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atom-one-dark.min.css'
-          />
-          <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js' />
         </Head>
         <body>
           <Main />

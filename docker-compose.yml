@@ -25,16 +25,3 @@ services:
     volumes:
       - ./packages/server:/server
       - /server/node_modules
-  client:
-    container_name: techblog_client
-    build: ./packages/client
-    command: yarn dev
-    environment:
-      NODE_ENV: production
-    depends_on:
-      - server
-    ports:
-      - 3000:3000
-    volumes:
-      - ./packages/client:/client
-      - /client/node_modules

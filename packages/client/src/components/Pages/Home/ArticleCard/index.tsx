@@ -72,15 +72,17 @@ const ArticlePreviewComponent: React.FC<IArticleProps> = ({
     <Link href={`/blog/article/${_id}`}>
       <ArticleCardContainer>
         <ArticleCardThumbnail>
-          <Image
-            priority
-            objectFit='cover'
-            layout='fill'
-            loader={unsplashLoader}
-            src={infos.thumbnail}
-            quality='30'
-            alt='thumbnail'
-          />
+          {infos.thumbnail ? (
+            <Image
+              priority
+              objectFit='cover'
+              layout='fill'
+              loader={unsplashLoader}
+              src={infos.thumbnail}
+              quality='25'
+              alt='thumbnail'
+            />
+          ) : null}
         </ArticleCardThumbnail>
         <ArticleCardInfo>
           <ArticleCardInfoDetails>

@@ -11,6 +11,8 @@ const Global = createGlobalStyle<IGlobalProps>`
         box-sizing: border-box;
     }
 
+
+
     :root {
       font-size: 62.5%;
     }
