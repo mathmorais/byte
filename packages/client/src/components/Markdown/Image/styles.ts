@@ -2,7 +2,10 @@ import styled from 'styled-components'
 
 export const MarkdownOutputImage = styled.div`
   position: relative;
-  width: 100%;
-  height: 250px;
-  max-height: 250px;
+  margin: 30px -30px;
+  height: 200px;
+
+  img {
+    border-radius: 4px;
+  }
 `

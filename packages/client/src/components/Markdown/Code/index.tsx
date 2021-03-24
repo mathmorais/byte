@@ -13,7 +13,7 @@ const CodeComponent = ({ children }) => {
 
   useEffect(() => {
     hljs.highlightAll()
-  }, [children])
+  }, [])
 
   const handleCopyClipboard = () => {
     const divContent = codeDiv.current.textContent
@@ -22,24 +22,22 @@ const CodeComponent = ({ children }) => {
 
   if (children) {
     return (
-      <pre>
-        <MarkdownOutputCodeContainer>
-          <MarkdownOutputCodeTopbar>
-            <MarkdownOutputCodeTopbarAction
-              title='Copy the code'
-              aria-label='Copy the code'
-              onClick={handleCopyClipboard}
-            >
-              <MdContentCopy />
-            </MarkdownOutputCodeTopbarAction>
-          </MarkdownOutputCodeTopbar>
-          <MarkdownOutputCode ref={codeDiv}>{children}</MarkdownOutputCode>
-        </MarkdownOutputCodeContainer>
-      </pre>
+      <MarkdownOutputCodeContainer>
+        <MarkdownOutputCodeTopbar>
+          <MarkdownOutputCodeTopbarAction
+            title='Copy the code'
+            aria-label='Copy the code'
+            onClick={handleCopyClipboard}
+          >
+            <MdContentCopy />
+          </MarkdownOutputCodeTopbarAction>
+        </MarkdownOutputCodeTopbar>
+        <MarkdownOutputCode ref={codeDiv}>{children}</MarkdownOutputCode>
+      </MarkdownOutputCodeContainer>
     )
   }
 
   return null
 }
 
-export default memo(CodeComponent)
+export default CodeComponent

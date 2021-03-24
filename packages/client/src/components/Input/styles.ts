@@ -8,18 +8,7 @@ export const InputContainer = styled.div`
   background: ${props => props.theme.colors.primary.darkest};
   box-shadow: ${props => props.theme.others.defaultBoxShadow};
   border-radius: 150px;
-  padding: 17px 15px;
-
-  svg {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    padding: 5px;
-    background: ${props => props.theme.colors.primary.light};
-    border-radius: 100%;
-    margin-right: 50px;
-    transition: all 0.15s ease-in;
-  }
+  padding: 9px 15px;
 `
 
 export const Input = styled.input`
@@ -36,14 +25,17 @@ export const Input = styled.input`
     color: inherit;
     opacity: 0.3;
   }
+`
 
-  &:focus + svg {
-    background: ${props => props.theme.colors.primary.dark};
+export const IconContainer = styled.div`
+  svg {
+    width: 30px;
+    height: 30px;
+    padding: 7px;
     color: ${props => props.theme.colors.neutral.light};
-  }
-
-  &:valid + svg {
-    background: ${props => props.theme.colors.secondary.light};
-    color: ${props => props.theme.colors.neutral.dark};
+    background: ${props => props.theme.colors.primary.light};
+    border-radius: 100%;
+    margin-right: 15px;
+    transition: all 0.15s ease-in;
   }
 `
