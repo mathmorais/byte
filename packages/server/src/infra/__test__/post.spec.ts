@@ -15,12 +15,13 @@ describe('Post creation', () => {
   })
   it('Should return 200 when credentials is valid', async done => {
     const credentials: IPostCreatorRequestDTO = {
-      title: 'Testing post',
-      content: '**Testing**',
-      read_time: 456,
-      tags: ['test'],
-      background:
-        'https://images.unsplash.com/photo-1556075798-4825dfaaf498?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1355&q=80',
+      infos: {
+        read_time: 500,
+        thumbnail: 'photo-123',
+        title: 'test',
+      },
+      tags: ['Test'],
+      content: '# Test',
     }
 
     request(app).post('/api/posts/create').send(credentials).expect(201, done)
@@ -49,5 +50,10 @@ describe('Post searching', () => {
     )
 
     expect(body.message.length).toBeLessThanOrEqual(1)
+  })
+  it('Should return posts that match at the query filter', async done => {
+    const filter = 'a'
+
+    request(app).get(`/api/posts/search?filter=${filter}`).expect(200, done)
   })
 })

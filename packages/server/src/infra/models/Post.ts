@@ -1,6 +1,6 @@
 import { Schema, model, Document, now } from 'mongoose'
 
-interface IPostSchema extends Document {
+export interface IPostSchema extends Document {
   infos: {
     title: string
     read_time: number

@@ -4,7 +4,6 @@ export const MarkdownOutput = styled.div`
   position: relative;
   width: 100%;
   max-width: 700px;
-  overflow-x: hidden;
   word-wrap: break-word;
   margin: auto;
   padding-bottom: 350px;

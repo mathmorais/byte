@@ -4,9 +4,9 @@ export class Post {
   id?: string | ObjectId
   infos!: {
     title: string
-    views: number
-    thumbnail: string
     read_time: number
+    thumbnail: string
+    views: number
     creation_time: Date
   }
   content!: string

@@ -1,6 +1,5 @@
 {
   "name": "techblog",
-  "version": "0.0.1",
   "author": "mathmorais",
   "license": "MIT",
   "private": true,
@@ -8,10 +7,14 @@
     "packages/*"
   ],
   "scripts": {
-    "client:dev": "yarn workspace @newsproject/client dev",
+    "start:production": "docker-compose up",
+    "client:dev": "yarn workspace @techblog/client start:development",
+    "client:production": "yarn workspace @techblog/client start:production",
+    "server:dev": "yarn workspace @techblog/server start:development",
+    "server:production": "docker-compose up -d server",
     "test": "jest"
   },
-  "devDependencies": {
+  "start:devDependencies": {
     "@techblog/eslint-config": "*",
     "@types/jest": "^26.0.20",
     "jest": "^26.6.3",

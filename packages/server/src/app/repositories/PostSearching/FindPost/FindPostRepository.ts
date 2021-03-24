@@ -1,6 +1,6 @@
-import { Post } from '@domain/entities/Post'
+import { IPostSchema } from '@infra/models/Post'
 
 export interface IFindPostRepository {
-  find(query: object): Promise<Post[]>
-  findOne(query: object): Promise<Post | null>
+  find(query: object, offset: number): Promise<IPostSchema[]>
+  findOne(query: object): Promise<IPostSchema | null>
 }

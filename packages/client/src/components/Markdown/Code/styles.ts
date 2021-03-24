@@ -4,7 +4,8 @@ export const MarkdownOutputCodeContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden scroll;
+  overflow: auto;
+  margin: 25px -30px;
 
   &::-webkit-scrollbar {
     width: 15px;
@@ -26,7 +27,7 @@ export const MarkdownOutputCodeContainer = styled.div`
 
 export const MarkdownOutputCode = styled.code`
   max-height: 600px;
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 20px;
   overflow: hidden;
   font-size: ${props => props.theme.sizes.ExtraSmall.fontSize};

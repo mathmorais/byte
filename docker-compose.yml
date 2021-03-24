@@ -13,7 +13,7 @@ services:
   server:
     container_name: techblog_server
     build: ./packages/server
-    command: yarn dev
+    command: yarn start:development
     depends_on:
       - database
     environment:

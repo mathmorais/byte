@@ -4,8 +4,9 @@ import { IFindPostDTO } from './FindPostDTO'
 export class FindPostUseCase {
   constructor(private findPostRepository: IFindPostRepository) {}
 
-  async handle({ query }: IFindPostDTO) {
-    if (query) return await this.findPostRepository.find(query)
+  async handle(props: IFindPostDTO) {
+    if (props.query)
+      return await this.findPostRepository.find(props.query, props.offset)
 
     throw new Error('Missing props on find post')
   }

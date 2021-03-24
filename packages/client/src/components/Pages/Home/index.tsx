@@ -1,7 +1,7 @@
 import React from 'react'
-import Post, { IArticleProps } from './ArticleCard'
-import { HomeContainer } from './styles'
+import ArticlePreview, { IArticleProps } from '../../ArticleCard'
 import SectionPage from '@components/SectionPage'
+import { ArticleGrid } from '@styles/ArticleGrid'
 
 interface IHomeProps {
   posts: IArticleProps[]
@@ -12,7 +12,7 @@ const HomeComponent: React.FC<IHomeProps> = props => {
     return (
       <>
         {props.posts.map((post, index) => (
-          <Post key={index} {...post} />
+          <ArticlePreview key={index} {...post} />
         ))}
       </>
     )
@@ -21,9 +21,9 @@ const HomeComponent: React.FC<IHomeProps> = props => {
   if (props.posts)
     return (
       <SectionPage title='Home'>
-        <HomeContainer>
+        <ArticleGrid>
           <RenderPosts />
-        </HomeContainer>
+        </ArticleGrid>
       </SectionPage>
     )
 
