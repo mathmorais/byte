@@ -1,3 +1,4 @@
+import { findAndCountUseCase } from '@app/useCases/PostSeaching/FindAndCount'
 import { findOnePostUseCase } from '@app/useCases/PostSeaching/FindOnePost'
 import { findPostUseCase } from '@app/useCases/PostSeaching/FindPost'
 import { Request, Response } from 'express'
@@ -24,8 +25,23 @@ export class PostSearchingController {
     }
   }
 
+  async searchAndCount(req: Request, res: Response) {
+    const query = {}
+
+    try {
+      const count = await findAndCountUseCase.handle({ query })
+      res.status(200).json({
+        message: count,
+      })
+    } catch (err) {
+      res.status(400).json({
+        message: err.message,
+      })
+    }
+  }
+
   async searchOne(req: Request, res: Response) {
-    const { id } = req.params
+    const { id } = req.query
 
     try {
       const post = await findOnePostUseCase.handle({ query: { _id: id } })
@@ -44,22 +60,12 @@ export class PostSearchingController {
     const regex = new RegExp(`${filter}`, 'gi')
 
     try {
-      let result = null
-
       const post = await findPostUseCase.handle({
         query: { 'infos.title': { $regex: regex } },
       })
 
-      if (post.length <= 0) {
-        result = await findPostUseCase.handle({
-          query: { tags: { $regex: regex } },
-        })
-      } else {
-        result = post
-      }
-
       res.status(200).json({
-        message: result,
+        message: post,
       })
     } catch (err) {
       res.status(400).json({

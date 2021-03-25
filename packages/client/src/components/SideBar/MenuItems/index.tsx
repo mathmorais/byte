@@ -16,12 +16,18 @@ interface IMenuItemsActions {
 const MenuItemsComponent: React.FC<IMenuItemsActions> = props => {
   const router = useRouter()
 
-  const splitedPathname = router.pathname.split('/')
-  const lastItem = splitedPathname.length - 1
-  const currentPath = splitedPathname[lastItem]
+  const pathname = router.pathname
 
   const handleMarkedItem = (action: string) => {
-    return action.toLowerCase() === currentPath
+    switch (action) {
+      case 'Home':
+        return pathname.includes('[page]')
+
+      default:
+        break
+    }
+
+    return pathname.includes(action.toLowerCase())
   }
 
   return (

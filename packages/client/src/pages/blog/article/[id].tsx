@@ -44,7 +44,7 @@ export default Article
 export const getStaticPaths: GetStaticPaths = async () => {
   const currentApiUrl = checkCurrentEnviroment()
 
-  const URL = `${currentApiUrl}/posts/search/all`
+  const URL = `${currentApiUrl}/posts/search`
   const { data } = await axios.get(URL)
   const posts: IArticleProps[] = data.message
 
@@ -54,14 +54,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 }
 
 export const getStaticProps: GetStaticProps = async ctx => {
   const { id } = ctx.params
   const currentApiUrl = checkCurrentEnviroment()
-  const URL = `${currentApiUrl}/posts/search/${id}`
+  const URL = `${currentApiUrl}/posts/search/one?id=${id}`
 
   const { data } = await axios.get(URL)
 

@@ -5,7 +5,11 @@ export const SignUpWrapper = styled.div`
   flex-direction: column;
   height: inherit;
   width: inherit;
-  color: white;
+
+  h1,
+  p {
+    color: ${props => props.theme.colors.neutral.light};
+  }
 `
 
 export const SignUpTop = styled.div`

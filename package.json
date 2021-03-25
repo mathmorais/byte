@@ -1,5 +1,5 @@
 {
-  "name": "techblog",
+  "name": "byte_blog",
   "author": "mathmorais",
   "license": "MIT",
   "private": true,
@@ -8,14 +8,14 @@
   ],
   "scripts": {
     "start:production": "docker-compose up",
-    "client:dev": "yarn workspace @techblog/client start:development",
-    "client:production": "yarn workspace @techblog/client start:production",
-    "server:dev": "yarn workspace @techblog/server start:development",
+    "client:dev": "yarn workspace @byte_blog/client start:development",
+    "client:production": "yarn workspace @byte_blog/client start:production",
+    "server:dev": "yarn workspace @byte_blog/server start:development",
     "server:production": "docker-compose up -d server",
     "test": "jest"
   },
   "start:devDependencies": {
-    "@techblog/eslint-config": "*",
+    "@byte_blog/eslint-config": "*",
     "@types/jest": "^26.0.20",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",

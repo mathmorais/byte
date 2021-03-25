@@ -12,7 +12,6 @@ import SideBar from '@components/SideBar'
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const { pathname } = useRouter()
 
-  console.log(pathname)
   const getCurrentPath = () => {
     const splitedPath = pathname.split('/')
     const splitedSize = splitedPath.length
@@ -46,7 +45,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Head>
-          <title>TechBlog - {CURRENT_PATH}</title>
+          <title>Byte - {CURRENT_PATH}</title>
         </Head>
         <Global includesNextGrid={nonSideBarPages ? false : true} />
         {nonSideBarPages ? null : <SideBar />}

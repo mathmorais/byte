@@ -18,7 +18,7 @@ const SideBarComponent = () => {
   const actions = [
     {
       name: 'Home',
-      href: '/blog/home',
+      href: '/blog/home/1',
       icon: MdHome,
     },
     {
@@ -56,7 +56,7 @@ const SideBarComponent = () => {
             width='100%'
             height='100%'
             layout='responsive'
-            src='/logo.png'
+            src='/logo.svg'
             priority
           />
         </Logo>

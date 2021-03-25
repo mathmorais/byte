@@ -212,7 +212,7 @@ const CreateComponent = () => {
             </MarkdownInputTopBarDropdown>
             <MarkdownInputTopBarAction onClick={handleArticleSubmit}>
               <MarkdownInputTopBarButtonSubmit>
-                <Small>Submit</Small>
+                <Small>Create</Small>
               </MarkdownInputTopBarButtonSubmit>
             </MarkdownInputTopBarAction>
           </MarkdownInputTopBar>

@@ -1,15 +1,16 @@
-import React, { memo, useEffect, useRef } from 'react'
+import React, { MouseEvent, useEffect, useRef, useState } from 'react'
 import {
   MarkdownOutputCodeContainer,
   MarkdownOutputCodeTopbar,
   MarkdownOutputCodeTopbarAction,
   MarkdownOutputCode,
 } from './styles'
-import { MdContentCopy } from 'react-icons/md'
+import { MdCheck, MdContentCopy } from 'react-icons/md'
 import hljs from 'highlight.js'
 
 const CodeComponent = ({ children }) => {
   const codeDiv = useRef<HTMLDivElement>(null)
+  const [clipboardClicked, setClipboardClicked] = useState(false)
 
   useEffect(() => {
     hljs.highlightAll()
@@ -20,16 +21,25 @@ const CodeComponent = ({ children }) => {
     navigator.clipboard.writeText(divContent)
   }
 
+  const handleClipboardClick = () => {
+    handleCopyClipboard()
+
+    setClipboardClicked(true)
+    setTimeout(() => {
+      setClipboardClicked(false)
+    }, 1000)
+  }
+
   if (children) {
     return (
       <MarkdownOutputCodeContainer>
         <MarkdownOutputCodeTopbar>
           <MarkdownOutputCodeTopbarAction
-            title='Copy the code'
-            aria-label='Copy the code'
-            onClick={handleCopyClipboard}
+            title='Copy to clipboard'
+            aria-label='Copy to clipboard'
+            onClick={handleClipboardClick}
           >
-            <MdContentCopy />
+            {clipboardClicked ? <MdCheck /> : <MdContentCopy />}
           </MarkdownOutputCodeTopbarAction>
         </MarkdownOutputCodeTopbar>
         <MarkdownOutputCode ref={codeDiv}>{children}</MarkdownOutputCode>

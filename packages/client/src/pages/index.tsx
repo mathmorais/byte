@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import Image from 'next/image'
 import theme from 'src/constants/theme'
 import Head from 'next/head'
+import axios from 'axios'
 import SignUpComponent from '@components/Pages/SignUp'
+import PopupComponent from '@components/Popup'
+import Cookies from 'js-cookie'
 import { ContainerWrapper, Container } from '@styles/Container'
 import { Content } from '@styles/Content'
 import { LogoBackground, LogoBackgroundContent } from '@styles/LogoBackground'
-import PopupComponent from '@components/Popup'
 import { GetServerSideProps } from 'next'
-import axios from 'axios'
-import Cookies from 'js-cookie'
 import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 
 const Register: React.FC = () => {
@@ -29,7 +29,7 @@ const Register: React.FC = () => {
               objectFit='contain'
               priority
               layout='fill'
-              src='/logo.png'
+              src='/logo_transparent.svg'
               alt='Logo'
             />
           </LogoBackgroundContent>
@@ -59,7 +59,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
     return {
       redirect: {
-        destination: '/blog/home',
+        destination: '/blog/home/1',
         statusCode: 301,
       },
     }

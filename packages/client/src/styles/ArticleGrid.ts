@@ -6,4 +6,5 @@ export const ArticleGrid = styled.section`
   grid-template-columns: repeat(auto-fit, minmax(200px, 340px));
   gap: 50px;
   justify-content: center;
+  padding: 25px 0;
 `

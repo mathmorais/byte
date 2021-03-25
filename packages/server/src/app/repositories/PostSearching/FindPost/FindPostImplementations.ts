@@ -4,14 +4,17 @@ import { IFindPostRepository } from './FindPostRepository'
 export class FindPostImplementations implements IFindPostRepository {
   async find(query: object, offset: number) {
     const defaultLimit = 15
-    const currentOffset = offset ?? 0
 
     return await PostModel.find({ ...query })
       .limit(defaultLimit)
-      .skip(currentOffset)
+      .skip(offset)
   }
 
   async findOne(query: object) {
     return await PostModel.findOne({ ...query })
+  }
+
+  async findAndCount(query: object) {
+    return await PostModel.find({ ...query }).count()
   }
 }
