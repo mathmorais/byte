@@ -14,6 +14,7 @@ interface IPopupLoadingProps {
 
 export const PopupContainer = styled.div<IPopupContainerProps>`
   display: flex;
+  opacity: 0;
   justify-content: center;
   width: 200px;
   height: 80px;
@@ -22,10 +23,7 @@ export const PopupContainer = styled.div<IPopupContainerProps>`
   right: 15px;
   top: 15px;
   border-radius: 4px;
-  background: ${props => {
-    if (props.state === 'success') return props.theme.colors.primary.darkest
-    if (props.state === 'warning') return props.theme.colors.secondary.light
-  }};
+  background: ${props => props.theme.colors.secondary.light};
   box-shadow: ${props => props.theme.others.defaultBoxShadow};
   transform: translateX(150%);
   transition: all 0.35s ease;

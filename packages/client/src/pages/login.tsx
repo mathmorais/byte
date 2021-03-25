@@ -22,10 +22,10 @@ const Login: React.FC = () => {
         <LogoBackground>
           <LogoBackgroundContent>
             <Image
-              objectFit='contain'
               priority
+              objectFit='contain'
               layout='fill'
-              src='/logo.png'
+              src='/logo_transparent.svg'
               alt='Logo'
             />
           </LogoBackgroundContent>
@@ -52,9 +52,11 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       },
     })
 
+    const redirectUrl = '/blog/home/1'
+
     return {
       redirect: {
-        destination: '/blog/home',
+        destination: redirectUrl,
         statusCode: 301,
       },
     }

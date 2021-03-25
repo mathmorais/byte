@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
 export const SideBar = styled.div`
+  width: 90px;
   position: relative;
   z-index: 3;
 `
 export const SideBarContent = styled.div`
   display: flex;
-
   left: 0;
   top: 0;
-  width: clamp(80px, 4%, 120px);
+  width: 90px;
   position: fixed;
   height: 100%;
   background: ${props => props.theme.colors.neutral.light};
@@ -22,6 +22,9 @@ export const SideBarContent = styled.div`
 
 export const Logo = styled.div`
   width: 50%;
+  img {
+    border-radius: 4px;
+  }
 `
 
 export const Menu = styled.div`

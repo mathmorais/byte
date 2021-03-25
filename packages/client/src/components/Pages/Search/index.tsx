@@ -1,19 +1,13 @@
-import React, {
-  ChangeEvent,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import SectionPage from '@components/SectionPage'
 import axios from 'axios'
 import InputComponent from '@components/Input'
+import lottie from 'lottie-web'
+import ArticlePreviewComponent from '@components/ArticleCard'
 import { ArticleGrid } from '@styles/ArticleGrid'
 import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 import { SearchTopContainer, SearchNotFound, SearchLoading } from './styles'
 import { MdSearch } from 'react-icons/md'
-import ArticlePreviewComponent from '@components/ArticleCard'
-import lottie from 'lottie-web'
 import { Large } from '@styles/Typography'
 
 const SearchComponent = () => {
@@ -22,19 +16,6 @@ const SearchComponent = () => {
   const [pending, setPending] = useState(false)
   const loadingDiv = useRef<HTMLDivElement>()
   const notFoundDiv = useRef<HTMLDivElement>()
-
-  useEffect(() => {
-    const loadInitialPosts = async () => {
-      const url = `${checkCurrentEnviroment()}/posts/search?filter=${searchInput}`
-      const response = await axios.get(url)
-
-      const posts = response.data.message
-
-      setFindedPosts(posts)
-    }
-
-    loadInitialPosts()
-  }, [])
 
   useEffect(() => {
     if (pending) {
@@ -50,7 +31,7 @@ const SearchComponent = () => {
 
   useEffect(() => {
     const getPostsData = async () => {
-      const url = `${checkCurrentEnviroment()}/posts/search?filter=${searchInput}`
+      const url = `${checkCurrentEnviroment()}/posts/search/filter?filter=${searchInput}`
 
       const response = await axios.get(url)
 

@@ -14,10 +14,12 @@ router.post(
   postCreatorController.create
 )
 
-router.get('/search/all', postSearchingController.search)
+router.get('/search', postSearchingController.search)
 
-router.get('/search/:id', postSearchingController.searchOne)
+router.get('/search/count', postSearchingController.searchAndCount)
 
-router.get('/search', postSearchingController.searchFilter)
+router.get('/search/one', postSearchingController.searchOne)
+
+router.get('/search/filter', postSearchingController.searchFilter)
 
 export default router

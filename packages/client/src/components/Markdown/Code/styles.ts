@@ -58,4 +58,12 @@ export const MarkdownOutputCodeTopbarAction = styled.button`
   &:hover {
     background: rgba(0, 0, 0, 0.35);
   }
+
+  svg {
+    opacity: 0.5;
+    transition: opacity 0.25s ease;
+  }
+  &:hover svg {
+    opacity: 1;
+  }
 `

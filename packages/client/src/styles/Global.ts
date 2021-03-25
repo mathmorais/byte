@@ -29,7 +29,7 @@ const Global = createGlobalStyle<IGlobalProps>`
       #__next {
         min-height: 100vh;
         display: grid;
-        grid-template: minmax(100vh, 100%) / minmax(80px, 4%) 1fr;
+        grid-template: minmax(100vh, 100%) / 90px 1fr;
       }`
       )
     }}

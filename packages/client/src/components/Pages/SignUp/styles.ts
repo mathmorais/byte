@@ -7,6 +7,11 @@ export const SignUpWrapper = styled.div`
   width: inherit;
   color: white;
   max-width: 700px;
+
+  h1,
+  p {
+    color: ${props => props.theme.colors.neutral.light};
+  }
 `
 
 export const SignUpTop = styled.div`

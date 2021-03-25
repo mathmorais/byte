@@ -1,4 +1,4 @@
 export interface IFindPostDTO {
   query: object
-  offset?: number
+  offset?: number | 0
 }
