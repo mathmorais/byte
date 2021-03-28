@@ -42,9 +42,9 @@ export const getStaticPaths: GetStaticPaths = async ctx => {
 }
 export const getStaticProps: GetStaticProps = async ctx => {
   const currentApiUrl = checkCurrentEnviroment()
-  const currentPage = ctx.params.page
+  const currentPage = Number(ctx.params.page) <= 0 ? 1 : Number(ctx.params.page)
 
-  if (Number(currentPage) > 0) {
+  if (currentPage > 0) {
     const URL_POST = `${currentApiUrl}/posts/search?page=${currentPage}`
     const URL_POST_QUANTITY = `${currentApiUrl}/posts/search/count`
     const posts = await axios.get(URL_POST)
