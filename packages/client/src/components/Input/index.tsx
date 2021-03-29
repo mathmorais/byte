@@ -26,7 +26,11 @@ const InputComponent: ForwardRefRenderFunction<
 
   return (
     <InputContainer style={containerStyle} onClick={handleFocusInput}>
-      <IconContainer>{Icon ? <Icon /> : null}</IconContainer>
+      {Icon ? (
+        <IconContainer>
+          <Icon />
+        </IconContainer>
+      ) : null}
       <Input {...rest} ref={ref ? ref : null} />
     </InputContainer>
   )

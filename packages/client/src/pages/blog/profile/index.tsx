@@ -4,6 +4,7 @@ import SectionPage from '@components/SectionPage'
 import { GetServerSideProps } from 'next'
 import ProfileComponent from '@components/Pages/Profile'
 import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
+import Cookies from 'js-cookie'
 
 interface IProfileProps {
   id: string
@@ -21,10 +22,10 @@ export interface IUserData {
 const Profile: React.FC<IProfileProps> = props => {
   const [loading, setLoading] = useState(true)
   const [userData, setUserData] = useState<IUserData>(null)
-  const ID_EXIST = props.id !== null
+  const idExist = props.id !== null
 
   useEffect(() => {
-    if (ID_EXIST) {
+    if (idExist) {
       const getUserData = async () => {
         const currentApiUrl = checkCurrentEnviroment()
 
@@ -39,7 +40,43 @@ const Profile: React.FC<IProfileProps> = props => {
     }
   }, [])
 
-  if (ID_EXIST) {
+  const generateUserCookies = (
+    field: string,
+    value: string | object | boolean
+  ) => {
+    return Cookies.set(field, value.toString(), {
+      expires: 30,
+      sameSite: 'Strict',
+      path: '/blog',
+    })
+  }
+
+  const checkCookiesExist = () => {
+    const cookiesToCheck = ['name', 'email_verified', 'admin']
+    let cookiesExist = false
+
+    cookiesToCheck.forEach(
+      cookie => (cookiesExist = Cookies.get(cookie) !== undefined)
+    )
+
+    return cookiesExist
+  }
+
+  useEffect(() => {
+    const cookiesExist = checkCookiesExist()
+
+    if (cookiesExist) return
+
+    if (userData) {
+      console.log('is here?')
+
+      generateUserCookies('name', userData.name)
+      generateUserCookies('email_verified', userData.email_verified)
+      generateUserCookies('admin', userData.admin)
+    }
+  }, [userData])
+
+  if (idExist) {
     if (!loading) {
       return <ProfileComponent {...userData} />
     } else {
@@ -58,7 +95,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   let returnData = null
 
   try {
-    const response = await axios.get<{
+    const { data } = await axios.get<{
       message: { id: string; admin: boolean }
     }>(URL, {
       headers: {
@@ -66,7 +103,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       },
     })
 
-    returnData = response.data.message.id
+    returnData = data.message.id
   } catch (err) {
     return err
   } finally {

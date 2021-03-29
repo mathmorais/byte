@@ -11,10 +11,12 @@ const Global = createGlobalStyle<IGlobalProps>`
         box-sizing: border-box;
     }
 
-
-
     :root {
       font-size: 62.5%;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 60.5%;
+      }
     }
 
 

@@ -1,7 +1,8 @@
-import HomeComponent from '@components/Pages/Home'
+import React from 'react'
 import axios from 'axios'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { IArticleProps } from '@components/ArticleCard'
+import HomeComponent from '@components/Pages/Home'
+import { GetServerSideProps } from 'next'
+import { IArticleProps } from '@components/ArticlePreview'
 import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 
 interface IHomeProps {
@@ -22,45 +23,22 @@ const Home: React.FC<IHomeProps> = props => {
 
 export default Home
 
-export const getStaticPaths: GetStaticPaths = async ctx => {
+export const getServerSideProps: GetServerSideProps = async ctx => {
   const currentApiUrl = checkCurrentEnviroment()
-  const URL = `${currentApiUrl}/posts/search/count`
-  const { data } = await axios.get(URL)
-  const postPerPage = 15
-  const postCount = Math.ceil(data.message / postPerPage)
+  const pageParams = Number(ctx.params.page)
+  const currentPage = pageParams <= 0 ? 1 : pageParams
 
-  const paths = []
+  const URL_POST = `${currentApiUrl}/posts/search?page=${currentPage}`
+  const URL_POST_QUANTITY = `${currentApiUrl}/posts/search/count`
 
-  for (let index = 1; index <= postCount; index++) {
-    paths.push({ params: { page: index.toString() } })
-  }
+  const posts = await axios.get(URL_POST)
+  const postQuantity = await axios.get(URL_POST_QUANTITY)
 
   return {
-    paths: paths,
-    fallback: true,
-  }
-}
-export const getStaticProps: GetStaticProps = async ctx => {
-  const currentApiUrl = checkCurrentEnviroment()
-  const currentPage = Number(ctx.params.page) <= 0 ? 1 : Number(ctx.params.page)
-
-  if (currentPage > 0) {
-    const URL_POST = `${currentApiUrl}/posts/search?page=${currentPage}`
-    const URL_POST_QUANTITY = `${currentApiUrl}/posts/search/count`
-    const posts = await axios.get(URL_POST)
-    const postQuantity = await axios.get(URL_POST_QUANTITY)
-
-    return {
-      props: {
-        posts: posts.data.message,
-        postQuantity: postQuantity.data.message,
-        currentPage,
-      },
-      revalidate: 60,
-    }
-  }
-
-  return {
-    props: {},
+    props: {
+      posts: posts.data.message,
+      postQuantity: postQuantity.data.message,
+      currentPage,
+    },
   }
 }

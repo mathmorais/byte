@@ -7,7 +7,7 @@ export const ArticleContainer = styled.article`
 
 export const ArticleThumbnail = styled.div`
   width: 100%;
-  height: 30%;
+  height: 200px;
   position: relative;
   background: rgba(0, 0, 0, 0.5);
 `

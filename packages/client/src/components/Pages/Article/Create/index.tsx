@@ -168,7 +168,7 @@ const CreateComponent = () => {
   }
 
   const handleArticleSubmit = async () => {
-    const URL = `${checkCurrentEnviroment()}/posts/create`
+    const URL = `http://localhost:5050/api/posts/create`
     const BODY = {
       tags: ['test'],
       content: markdownContent,
@@ -186,8 +186,11 @@ const CreateComponent = () => {
     }
 
     try {
-      await axios.post(URL, BODY, HEADERS)
-      router.push('/blog/home')
+      const { data, status } = await axios.post(URL, BODY, HEADERS)
+
+      if (status !== 201) throw new Error(data.message)
+
+      router.push('/blog/home/1')
     } catch (err) {
       throwPopupMessage(err.message, 'warning', dispatch)
     }

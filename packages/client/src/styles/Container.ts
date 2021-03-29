@@ -21,7 +21,6 @@ const Container = styled.div<IContainerProps>`
   flex-direction: ${props => props.flexDirection || 'initial'};
   min-height: ${props => (props.fillScreen ? '100vh' : 'initial')};
   max-width: 1440px;
-  overflow-x: hidden;
   margin: auto;
   background: inherit;
 `

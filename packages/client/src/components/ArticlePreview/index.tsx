@@ -17,7 +17,8 @@ import Link from 'next/link'
 import { unsplashLoader } from 'src/utils/Image/loader'
 
 interface IArticleComment {
-  name: string
+  _id: string
+  username: string
   content: string
 }
 
@@ -60,7 +61,7 @@ const ArticlePreviewComponent: React.FC<IArticleProps> = ({
         {tags.map((tag, index) => {
           return (
             <ArticleCardInfoTagItem key={index}>
-              <Small>{tag}</Small>
+              <Small as='span'>{tag}</Small>
             </ArticleCardInfoTagItem>
           )
         })}
@@ -88,16 +89,18 @@ const ArticlePreviewComponent: React.FC<IArticleProps> = ({
           <ArticleCardInfoDetails>
             <ArticleCardInfoDetailsItem>
               <MdAvTimer />
-              <ExtraSmall>{handleformatTime(infos.read_time)}</ExtraSmall>
+              <ExtraSmall as='span'>
+                {handleformatTime(infos.read_time)}
+              </ExtraSmall>
             </ArticleCardInfoDetailsItem>
             <ArticleCardInfoDetailsRight>
               <ArticleCardInfoDetailsItem>
                 <MdVisibility />
-                <ExtraSmall>{infos.views}</ExtraSmall>
+                <ExtraSmall as='span'>{infos.views}</ExtraSmall>
               </ArticleCardInfoDetailsItem>
               <ArticleCardInfoDetailsItem>
                 <MdChatBubble />
-                <ExtraSmall>{comments.length}</ExtraSmall>
+                <ExtraSmall as='span'>{comments.length}</ExtraSmall>
               </ArticleCardInfoDetailsItem>
             </ArticleCardInfoDetailsRight>
           </ArticleCardInfoDetails>
