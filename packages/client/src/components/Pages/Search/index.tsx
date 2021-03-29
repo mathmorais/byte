@@ -3,9 +3,8 @@ import SectionPage from '@components/SectionPage'
 import axios from 'axios'
 import InputComponent from '@components/Input'
 import lottie from 'lottie-web'
-import ArticlePreviewComponent from '@components/ArticleCard'
+import ArticlePreviewComponent from '@components/ArticlePreview'
 import { ArticleGrid } from '@styles/ArticleGrid'
-import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 import { SearchTopContainer, SearchNotFound, SearchLoading } from './styles'
 import { MdSearch } from 'react-icons/md'
 import { Large } from '@styles/Typography'
@@ -31,10 +30,8 @@ const SearchComponent = () => {
 
   useEffect(() => {
     const getPostsData = async () => {
-      const url = `${checkCurrentEnviroment()}/posts/search/filter?filter=${searchInput}`
-
+      const url = `http://localhost:5050/api/posts/search/filter?filter=${searchInput}`
       const response = await axios.get(url)
-
       const posts = response.data.message
 
       setPending(false)

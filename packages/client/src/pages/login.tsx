@@ -52,7 +52,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       },
     })
 
-    const redirectUrl = '/blog/home/1'
+    const redirectUrl = '/blog/profile'
 
     return {
       redirect: {

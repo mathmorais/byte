@@ -12,8 +12,8 @@ export class Post {
   content!: string
   tags!: string[]
   comments!: {
-    user: string
-    comment: string
+    username: string
+    content: string
   }[]
 
   constructor(props: Omit<Post, 'id'>) {

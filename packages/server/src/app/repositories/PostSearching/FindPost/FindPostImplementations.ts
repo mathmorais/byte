@@ -15,6 +15,6 @@ export class FindPostImplementations implements IFindPostRepository {
   }
 
   async findAndCount(query: object) {
-    return await PostModel.find({ ...query }).count()
+    return await PostModel.find({ ...query }).countDocuments()
   }
 }

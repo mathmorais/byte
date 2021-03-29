@@ -11,14 +11,14 @@ export interface IPostSchema extends Document {
   content: string
   tags: string[]
   comments: {
-    user: string
-    comment: string
+    username: string
+    content: string
   }[]
 }
 
 const PostCommentSchema = new Schema({
-  user: { type: String, required: true },
-  comment: { type: String, required: true },
+  username: { type: String, required: true },
+  content: { type: String, required: true },
 })
 
 const PostSchema = new Schema({

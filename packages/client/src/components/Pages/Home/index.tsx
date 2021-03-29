@@ -1,5 +1,5 @@
 import React from 'react'
-import ArticlePreview, { IArticleProps } from '../../ArticleCard'
+import ArticlePreview, { IArticleProps } from '../../ArticlePreview'
 import SectionPage from '@components/SectionPage'
 import { ArticleGrid } from '@styles/ArticleGrid'
 import Head from 'next/head'
@@ -13,10 +13,13 @@ interface IHomeProps {
 
 const HomeComponent: React.FC<IHomeProps> = props => {
   const RenderPosts = () => {
-    if (props.posts) {
+    const posts = props.posts
+    const orderedPosts = posts.reverse()
+
+    if (orderedPosts) {
       return (
         <>
-          {props.posts.map((post, index) => (
+          {orderedPosts.map((post, index) => (
             <ArticlePreview key={index} {...post} />
           ))}
         </>

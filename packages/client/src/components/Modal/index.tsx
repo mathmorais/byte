@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import FormComponent from '@components/Form'
-import { ExtraMedium, Large, Medium } from '@styles/Typography'
+import { Large, Medium } from '@styles/Typography'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   ModalCloseButton,
@@ -12,6 +12,7 @@ import {
 import { MdClose } from 'react-icons/md'
 import { clearModalAction } from '@store/actions/modal.action'
 import Button from '@components/Button'
+import theme from 'src/constants/theme'
 
 interface IModalProps {
   setIsSubmit: React.Dispatch<React.SetStateAction<boolean>>
@@ -51,7 +52,7 @@ const ModalComponent: React.FC<IModalProps> = ({ isSubmit, setIsSubmit }) => {
 
     setTimeout(() => {
       handleCloseModal()
-    }, 5)
+    }, 100)
   }
 
   return (

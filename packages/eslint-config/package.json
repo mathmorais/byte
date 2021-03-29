@@ -1,7 +1,6 @@
 {
-  "name": "@byte_blog/eslint-config",
+  "name": "@byte/eslint-config",
   "version": "0.0.1",
-  "main": "index.js",
   "private": true,
   "license": "MIT",
   "devDependencies": {

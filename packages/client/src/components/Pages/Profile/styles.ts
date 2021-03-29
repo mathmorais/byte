@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 
 export const ProfileContainer = styled.section`
-  width: 100%;
+  width: 90%;
+  max-width: 1200px;
   min-height: 100%;
   border-radius: 12px;
   padding: 50px 45px;
   background: ${props => props.theme.colors.neutral.light};
   box-shadow: ${props => props.theme.others.defaultBoxShadow};
+  margin: 15px auto;
 `
 
 export const ProfileName = styled.div`

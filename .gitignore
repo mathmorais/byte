@@ -144,8 +144,5 @@ sketch
 # Docker volumes
 docker
 
-# Mongodb playground
-.mongodb
-
 
 # End of https://www.toptal.com/developers/gitignore/api/node,react,yarn

@@ -64,6 +64,7 @@ export const ModalContentMain = styled.div`
   height: 100%;
 
   p {
+    width: 100%;
     margin-bottom: 25px;
   }
 
@@ -74,5 +75,10 @@ export const ModalContentMain = styled.div`
   div {
     border: 2px solid ${props => props.theme.colors.neutral.dark};
     background: ${props => props.theme.colors.neutral.light};
+  }
+
+  button {
+    align-self: flex-end;
+    width: 50%;
   }
 `

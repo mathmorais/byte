@@ -67,7 +67,7 @@ const LoginComponent: React.FC = () => {
   }
 
   const handleRedirect = () => {
-    const url = '/blog/home/1'
+    const url = '/blog/profile'
     router.push(url)
   }
 

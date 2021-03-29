@@ -57,7 +57,8 @@ export const ArticleCardInfoDetailsItem = styled.div`
     margin-right: 5px;
   }
 
-  p {
+  span {
+    color: inherit;
     font-weight: bold;
   }
 `
@@ -96,7 +97,7 @@ export const ArticleCardInfoTagItem = styled.div`
   background: ${props => props.theme.colors.secondary.light};
   border-radius: 100px;
 
-  p {
-    font-weight: 500;
+  span {
+    font-weight: bold;
   }
 `
