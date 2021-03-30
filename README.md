@@ -4,12 +4,6 @@
 
 #
 
-<div align="center">
-    <img alt="licence-badge-apache" src="https://img.shields.io/static/v1?label=licence&message=apache&color=blue">
-    <img alt="licence-badge-node" src="https://img.shields.io/static/v1?  label=node&message=v14.15.3&color=green">
-    <img alt="licence-badge-npm" src="https://img.shields.io/static/v1?label=npm&message=v6.14.9&color=green">
-</div>
-
 ## Table of Contents
 
 - [Overview](#overview)
