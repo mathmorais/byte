@@ -1,1 +1,70 @@
-# In development
+<div align="center">
+  <img style="margin: 0" alt="byte" src="./assets/logo.svg" />
+</div>
+
+#
+
+<div align="center" >
+<img alt="licence-badge-apache" src="https://img.shields.io/static/v1?label=licence&message=apache&color=blue">
+<img alt="licence-badge-node" src="https://img.shields.io/static/v1?label=node&message=v14.15.3&color=green">
+<img alt="licence-badge-npm" src="https://img.shields.io/static/v1?label=npm&message=v6.14.9&color=green">
+</div>
+
+## Table of Contents
+
+- [Overview](#overview)
+  - [About](#about)
+  - [Demo](#demo)
+  - [Technologies](#technologies)
+- [How to use](#how-to-use)
+- [Contact](#contact)
+
+
+## Demo
+
+<img alt="" src="#">
+
+<img alt="" src="#">
+
+## About
+
+Byte is a simple blog with the focus on technology articles, inside the webpage is possible to see articles with differents topics.
+
+## Techs
+
+- Git 
+- Docker 
+- Docker compose
+- Node
+- Yarn  
+
+> Obs: These technologies is obrigatory to run the application.
+
+## How To Use
+
+### Development 
+
+In the development enviroment you can just run with node scripts, you can check them inside the **package.json**
+
+> Obs: In these method we don't will to use docker so, the database (**mongodb**) will need to installed on your machine.
+
+```bash
+  # Will start the client (nextjs) on your localhost
+  yarn client:dev 
+
+  # Will start the node server, necessary to have the database (mongodb) installed
+  yarn server:dev
+```
+
+### Production 
+
+In the production enviroment you will only need docker and docker compose installed on your machine.
+
+```bash
+  # Will start all the nescessary things to start the application
+  docker-compose up
+```
+
+## Contact
+
+- GitHub [@mathmorais](https://github.com/mathmorais)
