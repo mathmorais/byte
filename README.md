@@ -2,8 +2,6 @@
   <img style="margin: 0" alt="byte" src="./assets/logo.svg" />
 </div>
 
-#
-
 ## Table of Contents
 
 - [Overview](#overview)
