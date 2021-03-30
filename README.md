@@ -24,7 +24,7 @@ Byte is a simple blog with the focus on technology articles, inside the webpage 
 
 
 
-Currently only an account with admin role is allowed to create articles, for now the only way to set this role is changing them on the database. I think that the best option for solve this, is to create a different application with a admin dashboard or something like that.
+Currently only an account with admin role is allowed to create articles, for now the only way to set this role is changing them on the database. I think that the best option for solve this, is to create a different application with an admin dashboard or something like that.
 
 ## Techs
 
