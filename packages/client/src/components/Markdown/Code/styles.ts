@@ -39,7 +39,7 @@ export const MarkdownOutputCodeTopbar = styled.div`
   width: 100%;
   padding: 5px;
   background: #282c34;
-  border-radius: 6px 6px 0 0;
+  border-radius: 4px 4px 0 0;
 `
 
 export const MarkdownOutputCodeTopbarAction = styled.button`
@@ -49,7 +49,7 @@ export const MarkdownOutputCodeTopbarAction = styled.button`
   color: ${props => props.theme.colors.neutral.light};
   border: none;
   padding: 12px 15px;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 20px;
   background: transparent;
   cursor: pointer;

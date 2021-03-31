@@ -18,9 +18,9 @@ export const ArticleCardContainer = styled.div`
 `
 
 export const ArticleCardThumbnail = styled.div`
-  background: ${props => props.theme.colors.neutral.light};
+  background: rgba(0, 0, 0, 0.5);
   position: relative;
-  border-radius: 26px;
+  border-radius: 26px 26px 0 0;
   height: 100%;
 
   img {

@@ -67,9 +67,7 @@ const SignUpComponent: React.FC = () => {
   ]
 
   const handleRegister = async () => {
-    const currentApiUrl = checkCurrentEnviroment()
-
-    const URL = `${currentApiUrl}/users/create`
+    const URL = `http://localhost:5050/api/users/create`
     const FIELDS = getFieldsData(refs)
 
     try {

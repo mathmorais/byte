@@ -51,8 +51,7 @@ const LoginComponent: React.FC = () => {
   ]
 
   const handleAuthorization = async () => {
-    const currentApiUrl = checkCurrentEnviroment()
-    const URL = `${currentApiUrl}/users/auth`
+    const URL = `http://localhost:5050/api/users/auth`
     const FIELDS = getFieldsData(refs)
 
     try {

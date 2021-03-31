@@ -27,54 +27,15 @@ const Profile: React.FC<IProfileProps> = props => {
   useEffect(() => {
     if (idExist) {
       const getUserData = async () => {
-        const currentApiUrl = checkCurrentEnviroment()
-
         const response = await axios.get(
-          `${currentApiUrl}/users/find/${props.id}`
+          `http://localhost:5050/api/users/find/${props.id}`
         )
-
         setUserData(response.data.message)
         setLoading(false)
       }
       getUserData()
     }
   }, [])
-
-  const generateUserCookies = (
-    field: string,
-    value: string | object | boolean
-  ) => {
-    return Cookies.set(field, value.toString(), {
-      expires: 30,
-      sameSite: 'Strict',
-      path: '/blog',
-    })
-  }
-
-  const checkCookiesExist = () => {
-    const cookiesToCheck = ['name', 'email_verified', 'admin']
-    let cookiesExist = false
-
-    cookiesToCheck.forEach(
-      cookie => (cookiesExist = Cookies.get(cookie) !== undefined)
-    )
-
-    return cookiesExist
-  }
-
-  useEffect(() => {
-    const cookiesExist = checkCookiesExist()
-
-    if (cookiesExist) return
-
-    if (userData) {
-      console.log('is here?')
-
-      generateUserCookies('name', userData.name)
-      generateUserCookies('email_verified', userData.email_verified)
-      generateUserCookies('admin', userData.admin)
-    }
-  }, [userData])
 
   if (idExist) {
     if (!loading) {

@@ -8,4 +8,5 @@ export const ArticleGrid = styled.section`
   gap: 50px;
   justify-content: center;
   padding: 25px 0;
+  min-height: 100vh;
 `
