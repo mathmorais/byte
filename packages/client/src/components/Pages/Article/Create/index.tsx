@@ -22,6 +22,7 @@ import { throwPopupMessage } from 'src/utils/throwPopup'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
+import { stat } from 'fs/promises'
 
 const CreateComponent = () => {
   const router = useRouter()
@@ -192,7 +193,18 @@ const CreateComponent = () => {
 
       router.push('/blog/home/1')
     } catch (err) {
-      throwPopupMessage(err.message, 'warning', dispatch)
+      let message = ''
+      const statusCode = err.response.status
+      const UNATHORIZED = 401
+
+      if (statusCode === UNATHORIZED) {
+        message = 'You do not have permission to create a article'
+        setTimeout(() => {
+          router.push('/blog/home/1')
+        }, 2500)
+      }
+
+      return throwPopupMessage(message, 'warning', dispatch)
     }
   }
 

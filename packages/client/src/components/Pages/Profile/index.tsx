@@ -36,8 +36,9 @@ const ProfileComponent: React.FC<IUserData> = props => {
 
   const renderInfoItems = () => {
     const infos = generateInfosArray()
+    const orderInfos = infos.reverse()
 
-    return infos.map((item, index) => {
+    return orderInfos.map((item, index) => {
       return <InfoItem key={index} {...item} />
     })
   }

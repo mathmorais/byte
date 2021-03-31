@@ -8,9 +8,59 @@ import { ThemeProvider } from 'styled-components'
 import { useRouter } from 'next/dist/client/router'
 import { store } from '@store/index'
 import SideBar from '@components/SideBar'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const { pathname } = useRouter()
+
+  const generateUserCookies = (
+    field: string,
+    value: string | object | boolean
+  ) => {
+    return Cookies.set(field, value.toString(), {
+      expires: 30,
+      sameSite: 'Strict',
+      path: '/blog',
+    })
+  }
+
+  const auth_token = Cookies.get('auth_token')
+
+  if (auth_token) {
+    const handleGetTokenContent = async () => {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${auth_token}`,
+        },
+      }
+
+      const { data } = await axios.get(
+        'http://localhost:5050/api/token/verify',
+        config
+      )
+
+      return data.message
+    }
+
+    const handleUserData = async () => {
+      const tokenContent = await handleGetTokenContent()
+
+      const { data } = await axios.get(
+        `http://localhost:5050/api/users/find/${tokenContent.id}`
+      )
+
+      const userData = data.message
+
+      if (userData) {
+        generateUserCookies('name', userData.name)
+        generateUserCookies('email_verified', userData.email_verified)
+        generateUserCookies('admin', userData.admin)
+      }
+    }
+
+    handleUserData()
+  }
 
   const getCurrentPath = () => {
     const splitedPath = pathname.split('/')
@@ -56,12 +106,3 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 }
 
 export default App
-
-/*
-
-email_verified= boolean
-
-uid=string
-
-
-*/

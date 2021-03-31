@@ -20,20 +20,18 @@ const MardownOutputComponent: React.FC<IMarkdownOutput> = ({
   title,
   thumbnail,
 }) => {
-  const MarkdownContent = memo(
-    (): React.ReactElement => {
-      const unifiedProcessor = unified()
+  const MarkdownContent = (): React.ReactElement => {
+    const unifiedProcessor = unified()
 
-      const { result } = unifiedProcessor
-        .use(remarkParse)
-        .use(remarkReactParse, {
-          remarkReactComponents: markdownComponents,
-        })
-        .processSync(markdown)
+    const { result } = unifiedProcessor
+      .use(remarkParse)
+      .use(remarkReactParse, {
+        remarkReactComponents: markdownComponents,
+      })
+      .processSync(markdown)
 
-      return result as React.ReactElement
-    }
-  )
+    return result as React.ReactElement
+  }
 
   const checkThumbnailExist = () => {
     return thumbnail !== null && thumbnail?.length > 5

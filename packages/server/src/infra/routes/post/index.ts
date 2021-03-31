@@ -4,7 +4,10 @@ import {
   postCreatorValidate,
 } from './controllers/PostCreator'
 import { postSearchingController } from './controllers/PostSearching'
-import { postUpdateController } from './controllers/PostUpdate'
+import {
+  postUpdateController,
+  postUpdateValidator,
+} from './controllers/PostUpdate'
 
 const router = Router()
 
@@ -17,7 +20,11 @@ router.post(
 
 router.post('/update/views/:id', postUpdateController.updateViews)
 
-router.post('/update/comments/:id', postUpdateController.updateComments)
+router.post(
+  '/update/comments/:id',
+  postUpdateValidator.validateToken,
+  postUpdateController.updateComments
+)
 
 router.get('/search', postSearchingController.search)
 

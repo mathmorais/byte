@@ -4,6 +4,7 @@ import SectionPage from '@components/SectionPage'
 import { ArticleGrid } from '@styles/ArticleGrid'
 import Head from 'next/head'
 import Pagination from '@components/Pagination'
+import { Large } from '@styles/Typography'
 
 interface IHomeProps {
   posts: IArticleProps[]
@@ -12,11 +13,12 @@ interface IHomeProps {
 }
 
 const HomeComponent: React.FC<IHomeProps> = props => {
+  const posts = props.posts
+
   const RenderPosts = () => {
-    const posts = props.posts
     const orderedPosts = posts.reverse()
 
-    if (orderedPosts) {
+    if (orderedPosts?.length > 0) {
       return (
         <>
           {orderedPosts.map((post, index) => (
@@ -25,10 +27,11 @@ const HomeComponent: React.FC<IHomeProps> = props => {
         </>
       )
     }
+
     return null
   }
 
-  if (props.posts)
+  if (posts?.length > 0)
     return (
       <SectionPage title='Home'>
         <Head>
@@ -46,7 +49,20 @@ const HomeComponent: React.FC<IHomeProps> = props => {
       </SectionPage>
     )
 
-  return <SectionPage title='None posts found' />
+  return (
+    <SectionPage title='No posts found'>
+      <Head>
+        <title>Byte - No posts found</title>
+      </Head>
+      <ArticleGrid></ArticleGrid>
+      <Pagination
+        currentPage={props.currentPage}
+        postQuantity={props.postQuantity}
+        maxVisiblePages={5}
+        postQuantityPerPage={15}
+      />
+    </SectionPage>
+  )
 }
 
 export default HomeComponent

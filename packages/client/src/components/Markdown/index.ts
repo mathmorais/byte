@@ -9,6 +9,8 @@ import { ParagraphTypography, TitleTypography } from './Typography'
 import LinkComponent from './Link'
 import ImageComponent from './Image'
 import CodeComponent from './Code'
+import BlockquoteComponent from './Blockquote'
+import ListComponent from './List'
 
 const markdownComponents = {
   h1: TitleTypography,
@@ -21,6 +23,8 @@ const markdownComponents = {
   a: LinkComponent,
   img: ImageComponent,
   code: CodeComponent,
+  blockquote: BlockquoteComponent,
+  ul: ListComponent,
 }
 
 export { markdownComponents }
