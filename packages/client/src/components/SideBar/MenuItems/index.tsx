@@ -1,9 +1,8 @@
-import React, { memo } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { IconType } from 'react-icons'
 import { Item } from './styles'
-import Cookies from 'js-cookie'
 
 interface IMenuItemsActions {
   actions: {
@@ -19,12 +18,8 @@ const MenuItemsComponent: React.FC<IMenuItemsActions> = props => {
   const pathname = router.pathname
 
   const handleMarkedItem = (action: string) => {
-    switch (action) {
-      case 'Home':
-        return pathname.includes('[page]')
-
-      default:
-        break
+    if (action === 'Home') {
+      return pathname.includes('[page]')
     }
 
     return pathname.includes(action.toLowerCase())

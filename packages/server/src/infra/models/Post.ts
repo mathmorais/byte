@@ -9,7 +9,6 @@ export interface IPostSchema extends Document {
     creation_time?: Date
   }
   content: string
-  tags: string[]
   comments: {
     username: string
     content: string
@@ -30,10 +29,6 @@ const PostSchema = new Schema({
     creation_time: { type: Date, default: now() },
   },
   content: { type: String, required: true },
-  tags: {
-    type: [String],
-    default: [],
-  },
   comments: {
     default: [],
     type: [PostCommentSchema],

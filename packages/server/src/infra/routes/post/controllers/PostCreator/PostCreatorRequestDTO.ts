@@ -5,5 +5,4 @@ export interface IPostCreatorRequestDTO {
     thumbnail: string
   }
   content: string
-  tags: string[]
 }

@@ -7,8 +7,6 @@ import {
   ArticleCardInfoDetailsItem,
   ArticleCardInfoDetailsRight,
   ArticleCardInfoTitle,
-  ArticleCardInfoTags,
-  ArticleCardInfoTagItem,
 } from './styles'
 import Image from 'next/image'
 import { Medium, ExtraSmall, Small } from '@styles/Typography'
@@ -38,7 +36,6 @@ export interface IArticleProps {
 
 const ArticlePreviewComponent: React.FC<IArticleProps> = ({
   _id,
-  tags,
   comments,
   infos,
 }) => {
@@ -53,20 +50,6 @@ const ArticlePreviewComponent: React.FC<IArticleProps> = ({
     const minutes = handleSmallTime(Math.floor(time / 60))
 
     return `${minutes}:${seconds}`
-  }
-
-  const TagsItem = () => {
-    return (
-      <>
-        {tags.map((tag, index) => {
-          return (
-            <ArticleCardInfoTagItem key={index}>
-              <Small as='span'>{tag}</Small>
-            </ArticleCardInfoTagItem>
-          )
-        })}
-      </>
-    )
   }
 
   return (
@@ -107,9 +90,6 @@ const ArticlePreviewComponent: React.FC<IArticleProps> = ({
           <ArticleCardInfoTitle>
             <Medium as='h5'>{infos.title}</Medium>
           </ArticleCardInfoTitle>
-          <ArticleCardInfoTags>
-            <TagsItem />
-          </ArticleCardInfoTags>
         </ArticleCardInfo>
       </ArticleCardContainer>
     </Link>

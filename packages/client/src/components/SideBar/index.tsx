@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { SideBar, SideBarContent, Logo, Menu, Logout } from './styles'
+import { SideBar, SideBarContent, Logo, Menu, Below } from './styles'
 import {
   MdHome,
   MdPerson,
@@ -11,11 +11,14 @@ import {
 import { useRouter } from 'next/router'
 import { removeAllCookies } from 'src/utils/Cookies/removeAllCokies'
 import MenuItems from './MenuItems'
+import Cookies from 'js-cookie'
 
 const SideBarComponent = () => {
   const router = useRouter()
+  const isAdmin = Boolean(Cookies.get('admin'))
+  const isLoggedIn = Cookies.get('auth_token') !== null
 
-  const actions = [
+  const [actions, setActions] = useState([
     {
       name: 'Home',
       href: '/blog/home/1',
@@ -31,20 +34,25 @@ const SideBarComponent = () => {
       href: '/blog/search',
       icon: MdSearch,
     },
-    {
-      name: 'Create',
-      href: '/blog/article/create',
-      icon: MdCreate,
-    },
-  ]
+  ])
 
-  const handleLogout = () => {
-    try {
-      removeAllCookies()
-      router.replace('/login')
-    } catch (err) {
-      return err
+  useEffect(() => {
+    if (isAdmin) {
+      setActions([
+        ...actions,
+        { name: 'Create', href: '/blog/article/create', icon: MdCreate },
+      ])
     }
+  }, [])
+
+  const handleLogout = async () => {
+    removeAllCookies()
+
+    router.replace('/login')
+  }
+
+  const handleRedirect = (url: string) => {
+    return router.push(url)
   }
 
   return (
@@ -63,9 +71,19 @@ const SideBarComponent = () => {
         <Menu>
           <MenuItems actions={actions} />
         </Menu>
-        <Logout onClick={handleLogout} aria-label='Logout' title='Logout'>
-          <MdExitToApp />
-        </Logout>
+        {isLoggedIn ? (
+          <Below onClick={handleLogout} aria-label='Logout' title='Logout'>
+            <MdExitToApp />
+          </Below>
+        ) : (
+          <Below
+            onClick={() => handleRedirect('/login')}
+            aria-label='Login'
+            title='Login'
+          >
+            <MdPerson />
+          </Below>
+        )}
       </SideBarContent>
     </SideBar>
   )

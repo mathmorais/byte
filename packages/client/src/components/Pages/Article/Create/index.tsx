@@ -17,12 +17,10 @@ import ModalComponent from '../../../Modal'
 import { useDispatch } from 'react-redux'
 import { throwModalAction } from '@store/actions/modal.action'
 import { IInputProps } from '@components/Input'
-import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
 import { throwPopupMessage } from 'src/utils/throwPopup'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
-import { stat } from 'fs/promises'
 
 const CreateComponent = () => {
   const router = useRouter()
@@ -81,7 +79,7 @@ const CreateComponent = () => {
       name: 'Thumbnail',
       title: 'Change thumbnail',
       description:
-        'Put your image-id from unsplash url. e.g: https://images.unsplash.com/"IMAGE-ID"',
+        'Put your image-id from unsplash url. e.g: https://images.unsplash.com/"IMAGE-ID".',
       ref: thumbnailInput,
       options: {
         placeholder: 'Photo id',
@@ -193,18 +191,12 @@ const CreateComponent = () => {
 
       router.push('/blog/home/1')
     } catch (err) {
-      let message = ''
       const statusCode = err.response.status
       const UNATHORIZED = 401
 
       if (statusCode === UNATHORIZED) {
-        message = 'You do not have permission to create a article'
-        setTimeout(() => {
-          router.push('/blog/home/1')
-        }, 2500)
+        router.push('/blog/home/1')
       }
-
-      return throwPopupMessage(message, 'warning', dispatch)
     }
   }
 
