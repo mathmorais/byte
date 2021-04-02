@@ -3,7 +3,6 @@ import unified from 'unified'
 import remarkParse from 'remark-parse'
 import remarkReactParse from 'remark-react'
 import Image from 'next/image'
-import PopupComponent from '@components/Popup'
 import { MarkdownOutput, MarkdownOutputThubmnail } from './styles'
 import { unsplashLoader } from 'src/utils/Image/loader'
 import { markdownComponents } from '@components/Markdown'
@@ -43,7 +42,6 @@ const MardownOutputComponent: React.FC<IMarkdownOutput> = ({
 
   return (
     <MarkdownOutput>
-      <PopupComponent />
       {checkThumbnailExist() ? (
         <MarkdownOutputThubmnail>
           <Image

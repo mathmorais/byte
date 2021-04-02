@@ -4,7 +4,7 @@ export const ArticleCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 310px;
+  height: 275px;
   border-radius: 26px;
   background: ${props => props.theme.colors.neutral.light};
   cursor: pointer;
@@ -33,15 +33,15 @@ export const ArticleCardInfo = styled.div`
   height: 100%;
   display: flex;
   align-self: flex-end;
-  justify-content: space-between;
   flex-direction: column;
-  padding: 14px 12px;
+  padding: 15px;
 `
 
 export const ArticleCardInfoDetails = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 25px;
 `
 
 export const ArticleCardInfoDetailsItem = styled.div`
@@ -72,32 +72,11 @@ export const ArticleCardInfoDetailsRight = styled.div`
 `
 
 export const ArticleCardInfoTitle = styled.div`
-  display: flex;
-  justify-content: space-between;
+  justify-self: center;
   width: 100%;
   margin-bottom: 15px;
 
   h5 {
     font-weight: 400;
-  }
-`
-
-export const ArticleCardInfoTags = styled.div`
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-`
-
-export const ArticleCardInfoTagItem = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4px 20px;
-  margin-right: 10px;
-  background: ${props => props.theme.colors.secondary.light};
-  border-radius: 100px;
-
-  span {
-    font-weight: bold;
   }
 `

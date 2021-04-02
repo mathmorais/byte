@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import theme from '../constants/theme'
 import Global from '../styles/Global'
 import Head from 'next/head'
@@ -10,6 +10,7 @@ import { store } from '@store/index'
 import SideBar from '@components/SideBar'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { removeAllCookies } from 'src/utils/Cookies/removeAllCokies'
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const { pathname } = useRouter()
@@ -20,7 +21,6 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   ) => {
     return Cookies.set(field, value.toString(), {
       expires: 30,
-      sameSite: 'Strict',
       path: '/blog',
     })
   }
@@ -60,6 +60,8 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     }
 
     handleUserData()
+  } else {
+    removeAllCookies()
   }
 
   const getCurrentPath = () => {

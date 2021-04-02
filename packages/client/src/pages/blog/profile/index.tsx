@@ -4,7 +4,6 @@ import SectionPage from '@components/SectionPage'
 import { GetServerSideProps } from 'next'
 import ProfileComponent from '@components/Pages/Profile'
 import { checkCurrentEnviroment } from 'src/utils/checkEnviroment'
-import Cookies from 'js-cookie'
 
 interface IProfileProps {
   id: string

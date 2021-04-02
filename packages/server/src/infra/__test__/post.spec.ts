@@ -13,14 +13,13 @@ describe('Post creation', () => {
     await mongoose.connection.close()
     done()
   })
-  it('Should return 200 when credentials is valid', async done => {
+  it('Should return 200 when credentials is valid and the token has an admin role', async done => {
     const credentials: IPostCreatorRequestDTO = {
       infos: {
         read_time: 500,
         thumbnail: 'photo-123',
         title: 'test',
       },
-      tags: ['Test'],
       content: '# Test',
     }
 
@@ -29,8 +28,6 @@ describe('Post creation', () => {
 })
 
 describe('Post searching', () => {
-  let createdPostId: string = ''
-
   beforeAll(async () => {
     await mongoLoader()
   })
@@ -40,20 +37,16 @@ describe('Post searching', () => {
     done()
   })
   it('Should return all posts of posts when called', async done => {
-    const { body } = await request(app).get('/api/posts/search/all')
-
-    expect(body.message.length).toBeGreaterThanOrEqual(1)
+    request(app).get('/api/posts/search').expect(200, done)
   })
   it('Should return an unique post when called', async done => {
-    const { body } = await request(app).get(
-      `/api/posts/search/${createdPostId}`
-    )
-
-    expect(body.message.length).toBeLessThanOrEqual(1)
+    request(app).get(`/api/posts/search/one?id=123`).expect(200, done)
   })
   it('Should return posts that match at the query filter', async done => {
     const filter = 'a'
 
-    request(app).get(`/api/posts/search?filter=${filter}`).expect(200, done)
+    request(app)
+      .get(`/api/posts/search/filter?filter=${filter}`)
+      .expect(200, done)
   })
 })

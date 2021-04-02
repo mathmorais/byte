@@ -5,5 +5,4 @@ export interface ICreatePostDTO {
     thumbnail: string
   }
   content: string
-  tags: string[]
 }

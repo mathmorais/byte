@@ -33,7 +33,7 @@ export const Menu = styled.div`
   flex-direction: column;
 `
 
-export const Logout = styled.div`
+export const Below = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

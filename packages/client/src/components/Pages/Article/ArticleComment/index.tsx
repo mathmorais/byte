@@ -117,4 +117,4 @@ const ArticleCommentComponent: React.FC<{
   )
 }
 
-export default memo(ArticleCommentComponent)
+export default ArticleCommentComponent
