@@ -14,7 +14,7 @@
     "express": "^4.17.1",
     "handlebars": "^4.7.7",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.18",
+    "mongoose": "^5.12.3",
     "nodemailer": "^6.5.0"
   },
   "devDependencies": {
