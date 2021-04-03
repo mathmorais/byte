@@ -1,7 +1,7 @@
 {
   "name": "byte",
   "author": "mathmorais",
-  "license": "MIT",
+  "license": "Apache",
   "private": true,
   "workspaces": [
     "packages/*"
