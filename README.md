@@ -20,11 +20,11 @@
 
 <img alt="SignUp page" src="./assets/SignUp.png">
 
- <img alt="Home page" src="./assets/Home.png">
+<img alt="Home page" src="./assets/Home.png">
 
 <img alt="Profile page" src="./assets/Profile.png">
 
- <img alt="Search page" src="./assets/Search.png">
+<img alt="Search page" src="./assets/Search.png">
 
 <img alt="Create page" src="./assets/Create.png">
 
