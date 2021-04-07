@@ -17,17 +17,24 @@
 ## Demo
 
 <img alt="Login page" src="./assets/Login.png">
+
 <img alt="SignUp page" src="./assets/SignUp.png">
-<img alt="Home page" src="./assets/Home.png">
+
+ <img alt="Home page" src="./assets/Home.png">
+
 <img alt="Profile page" src="./assets/Profile.png">
-<img alt="Search page" src="./assets/Search.png">
+
+ <img alt="Search page" src="./assets/Search.png">
+
 <img alt="Create page" src="./assets/Create.png">
 
 ## About
 
 Basically Byte is a simple blog with the focus on technology articles, inside the webpage is possible to see articles with differents topics.
 
-Currently only an account with admin role is allowed to create articles, and the only way to set this role is changing them on the database. I think that the best option for solve this, is to create a different application with an admin dashboard or something like that.
+In this website I've created an email confirmation system, for now this system is not perfect at all, so will need some improvements too. The used technologies are **NodeMailer** and **Handlebars** for create the email interface.
+
+Currently only an account with admin role is allowed to create articles, and the only way to set this role is changing them on the database. I think that the best option, perhaps, is to create a different application with an admin dashboard or something like that.
 
 ## To do
 
@@ -37,7 +44,7 @@ Currently only an account with admin role is allowed to create articles, and the
 - Password changing on the profile page
 - Improves on responsiveness
 
-## Techs
+## Technologies
 
 - Docker
 - Docker compose
@@ -60,6 +67,8 @@ In the development enviroment you can just run with node scripts, you can check 
   # Will start the node server, necessary to have the database (mongodb) installed
   yarn server:dev
 ```
+
+---
 
 ### Production
 
