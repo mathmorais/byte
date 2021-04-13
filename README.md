@@ -38,7 +38,7 @@ Currently only an account with admin role is allowed to create articles, and the
 
 ## To do
 
-> Currently the project is suffering with some performace issues, The markdown parser has not much speed at all, so focus is some optmization is good point
+> Currently the project is suffering with some performace issues, The markdown parser has not much speed at all, so focus is some optimization is good point
 
 - Loading screen between home and article
 - Password changing on the profile page
